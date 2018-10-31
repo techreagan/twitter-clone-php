@@ -1,9 +1,18 @@
 <?php 
 
-class Tweets {
+class Tweets extends Controller {
+  private $userModel;
+
+  public function __construct() {
+    $this->userModel = $this->model('User');
+  }
 
   public function index() {
-    echo 'hello world';
+    $data = [
+      'user' => $this->userModel->getUserById()
+    ];
+
+    $this->view('tweets/index', $data);
   }
 
 }

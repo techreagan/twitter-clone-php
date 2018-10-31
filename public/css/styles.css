@@ -90,3 +90,45 @@ main#index {
 .datepicker-footer button {
   color: #2AA3EF!important;
 }
+
+/* Tweet */
+.main-container {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.card-profile .bg-twitter {
+  height: 6rem;
+}
+
+.img {
+  padding: .8rem .9rem; 
+  /* padding-top: .6rem; */
+  background: #e5dede;
+  display: inline-block;
+  border-radius: 50%;
+  border: 4px solid white;
+  position: relative;
+  top: 55px;
+  left: 10px;
+}
+
+.card-profile .card-content {
+  padding-top: 4px;
+}
+
+.card-profile .card-content p {
+  padding-left: 60px;
+  color: #14171A !important;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.card-profile .card-content span {
+  color: #667785;
+  font-weight: normal;
+  font-size: .9rem;
+  display: block;
+}
+
+.card-profile .c

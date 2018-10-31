@@ -46,4 +46,16 @@ class User {
       return false;
     }
   }
+
+  public function getUserById() {
+    $this->db->query('SELECT * FROM users WHERE id = :id');
+    $this->db->bind('id', $_SESSION['user_id']);
+    $user = $this->db->single();
+
+    if($user) {
+      return $user;
+    } else {
+      return false;
+    }
+  }
 }
