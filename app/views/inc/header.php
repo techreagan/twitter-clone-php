@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><?php echo SITENAME; ?></title>
   <link rel="stylesheet" href="<?php echo url_for('css/materialize.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo url_for('css/fontawesome/css/all.min.css') ?>">
   <link rel="stylesheet" href="<?php echo url_for('/css/styles.css'); ?>">
 </head>
 <body>

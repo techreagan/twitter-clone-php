@@ -1,7 +1,7 @@
 <nav class="white">
   <div class="container">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo color-black">Twitter</a>
+      <a href="#" class="brand-logo color-black"><i class="fab fa-twitter"></i>Home</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <!-- <li><a href="sass.html">Sass</a></li>
         <li><a href="badges.html">Components</a></li>
