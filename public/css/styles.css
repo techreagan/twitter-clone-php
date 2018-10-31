@@ -1,0 +1,28 @@
+body {
+  background: #E6ECF0;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  color: hsl(0, 1%, 14%);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.color-black {
+  color: hsl(0, 1%, 14%)!important;
+}
+
+main#index {
+  background: #2AA3EF;
+  height: 100%;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.m-0 {
+  margin: 0;
+}
