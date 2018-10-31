@@ -121,4 +121,8 @@ class Validation {
   public static function hasNumber($value) {
     return !preg_match('/[0-9]/', $value);
   }
+
+  public static function hasSymbolsAndNumbers($value) {
+    return !preg_match('/\W/', $value);
+  }
 }

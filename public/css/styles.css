@@ -14,6 +14,14 @@ main {
   color: hsl(0, 1%, 14%)!important;
 }
 
+.color-twitter {
+  color: #2AA3EF!important;
+}
+
+.bg-twitter {
+  background-color: #2AA3EF!important;
+}
+
 main#index {
   background: #2AA3EF;
   height: 100%;
@@ -37,4 +45,44 @@ main#index {
 
 .m-0 {
   margin: 0;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
+.invalid-feedback {
+  display: none!important;
+}
+
+.input-field input[type]:focus {
+  border-bottom: 1px solid #2AA3EF!important;
+  box-shadow: 0 1px 0 0 #2AA3EF!important;
+}
+
+.input-field input[type].is-invalid:focus {
+  border-bottom: 1px solid red!important;
+  box-shadow: 0 1px 0 0 red!important;
+}
+
+.input-field .is-invalid {
+  border-bottom: 1px solid red!important;
+  box-shadow: 0 1px 0 0 red!important;
+}
+
+.input-field .is-invalid + .invalid-feedback {
+  display: block!important;
+  color: red!important;
+}
+
+.datepicker-date-display {
+  background-color: #2AA3EF!important;
+}
+
+.is-today {
+  color: #2AA3EF!important;
+}
+
+.datepicker-footer button {
+  color: #2AA3EF!important;
 }
