@@ -5,7 +5,6 @@ class Auth {
   public static function logIn($user) {
     session_regenerate_id();
     $_SESSION['user_id'] = $user->id;
-    $_SESSION['user_name'] = $user->name;
     $_SESSION['last_login'] = time();
   
     return true;
@@ -13,7 +12,6 @@ class Auth {
   
   public static function logOut() {
     unset($_SESSION['user_id']);
-    unset($_SESSION['user_name']);
     unset($_SESSION['last_login']);
     session_destroy();
   

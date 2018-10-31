@@ -60,7 +60,7 @@
               </form>
             </div>
             <div class="card-action">
-              <p>Already using twitter? <a href="#">Login</a></p>
+              <p>Already using twitter? <a href="<?php echo url_for('users/login'); ?>">Login</a></p>
             </div>
           </div>
       </div>

@@ -21,4 +21,29 @@ class User {
       return false;
     }
   }
+
+  public function login($data) {
+    $this->db->query('SELECT id, username, email, password FROM users WHERE username = :value or email = :value AND password = :password');
+    $this->db->bind('value', $data['username']);
+    $this->db->bind('password', $data['password']);
+    $user = $this->db->single();
+
+    if(password_verify($data['password'], $user->password)) {
+      return $user;
+    } else {
+      return false;
+    }
+  }
+
+  public function findEmailOrUsername($value) {
+    $this->db->query('SELECT username, email FROM users WHERE username = :value or email = :value');
+    $this->db->bind('value', $value);
+    $user = $this->db->single();
+
+    if(empty($this->db->rowCount())) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
