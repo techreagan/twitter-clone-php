@@ -5,6 +5,9 @@ class Users extends Controller {
 
   public function __construct() {
     $this->userModel = $this->model('User');
+    if(Auth::isLoggedIn()) {
+      redirect('tweets');
+    }
   }
 
   public function signup() {

@@ -98,3 +98,4 @@ function time_elapsed_string($datetime, $full = false) {
           unset($string[$k]);
       }
   }
+}

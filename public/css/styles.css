@@ -83,6 +83,14 @@ main#index {
   box-shadow: none;
 }
 
+.progress {
+  background-color: #E8F5FD;
+}
+
+.progress .indeterminate {
+  background-color: #2AA3EF;
+}
+
 .invalid-feedback {
   display: none!important;
 }
@@ -261,7 +269,7 @@ main#index {
   border-top: 0;
 }
 
-.tweet a {
+.tweet input {
   border-radius: 20px;
 } 
 

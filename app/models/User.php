@@ -1,5 +1,5 @@
 <?php 
-
+// Auth::logOut();
 class User {
   public function __construct() {
     $this->db = new Database;
@@ -23,9 +23,8 @@ class User {
   }
 
   public function login($data) {
-    $this->db->query('SELECT id, username, email, password FROM users WHERE username = :value or email = :value AND password = :password');
+    $this->db->query('SELECT id, username, email, password FROM users WHERE username = :value or email = :value');
     $this->db->bind('value', $data['username']);
-    $this->db->bind('password', $data['password']);
     $user = $this->db->single();
 
     if(password_verify($data['password'], $user->password)) {
@@ -57,5 +56,14 @@ class User {
     } else {
       return false;
     }
+  }
+
+  public function getAllUser($number) {
+    $this->db->query('SELECT id, firstname, lastname, username FROM users WHERE id != :user_id LIMIT :number');
+    $this->db->bind(':number', $number);
+    $this->db->bind('user_id', $_SESSION['user_id']);
+    $users = $this->db->resultSet();
+
+    return $users;
   }
 }
