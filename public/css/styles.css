@@ -22,6 +22,22 @@ main {
   background-color: #2AA3EF!important;
 }
 
+.twitter-hover {
+  color: #E8F5FD;
+}
+
+.color-grey {
+  color: #667785 !important;
+}
+
+.red {
+  color: #e0245e;
+}
+
+.bold {
+  font-weight: bold!important;
+}
+
 main#index {
   background: #2AA3EF;
   height: 100%;
@@ -51,8 +67,20 @@ main#index {
   padding: 0 !important;
 }
 
+.pl-0 {
+  padding-left: 0!important;
+}
+
+.pr-0 {
+  padding-right: 0!important;
+}
+
 .error {
   color: red;
+}
+
+.no-shadow {
+  box-shadow: none;
 }
 
 .invalid-feedback {
@@ -79,6 +107,16 @@ main#index {
   color: red!important;
 }
 
+.input-field textarea:focus {
+  border-bottom: 1px solid #2AA3EF!important;
+  box-shadow: 0 1px 0 0 #2AA3EF!important;
+}
+
+.input-field textarea:focus {
+  border-bottom: 1px solid #2AA3EF!important;
+  box-shadow: 0 1px 0 0 #2AA3EF!important;
+}
+
 .datepicker-date-display {
   background-color: #2AA3EF!important;
 }
@@ -91,10 +129,55 @@ main#index {
   color: #2AA3EF!important;
 }
 
+/* Navbar */
+.navbar {
+  height: 46px;
+  line-height: 46px;
+  font-weight: bold
+}
+
+.navbar a, .navbar i {
+  font-size: 1.1rem!important;
+  line-height: 46px!important;
+}
+
+.navbar a {
+  height: 46px;
+  
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: .91rem!important;
+}
+
+.navbar a.active {
+  color: #2AA3EF !important;
+  border-bottom: 3px solid #2AA3EF;
+}
+
+.navbar i.icon {
+  margin-right: 5px!important;
+}
+
+
+
 /* Tweet */
 .main-container {
-  padding-right: 1rem;
-  padding-left: 1rem;
+  /* max-width: 1300px; */
+  /* padding-right: 1rem;
+  padding-left: 1rem; */
+  /* width: 70%; */
+
+}
+
+@media only screen and (min-width: 993px) {
+  .main-container {
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .main-container {
+    /* width: 100%; */
+  }
 }
 
 .card-profile .bg-twitter {
@@ -104,7 +187,9 @@ main#index {
 .img {
   padding: .8rem .9rem; 
   /* padding-top: .6rem; */
-  background: #e5dede;
+  /* background: #e5dede;
+   */
+  background-color: #999999;
   display: inline-block;
   border-radius: 50%;
   border: 4px solid white;
@@ -113,15 +198,28 @@ main#index {
   left: 10px;
 }
 
+.card {
+  margin-top: 0;
+}
+
 .card-profile .card-content {
   padding-top: 4px;
+  padding-bottom: 10px;
 }
 
 .card-profile .card-content p {
-  padding-left: 60px;
+  padding-left: 70px;
   color: #14171A !important;
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+.card-profile .card-content a {
+  color: #14171A;
+}
+
+.card-profile .card-content a:hover {
+  text-decoration: underline;
 }
 
 .card-profile .card-content span {
@@ -131,4 +229,136 @@ main#index {
   display: block;
 }
 
-.card-profile .c
+.card-profile .card-action {
+  padding-top: 0;
+  padding-left: 12px;
+  border-top: none;
+} 
+
+.card-profile.card .card-action:last-child a {
+  display: inline-block;
+  color: #657786!important;
+  font-weight: bold!important;
+  font-size: .8rem;
+  margin-right: 1.4rem!important;
+  text-transform: capitalize !important;
+}
+
+.card-profile.card .card-action:last-child span {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.tweet {
+  background-color: #E8F5FD;
+}
+
+.tweet .card-content {
+  padding-bottom: 0;
+}
+
+.tweet .card-action {
+  border-top: 0;
+}
+
+.tweet a {
+  border-radius: 20px;
+} 
+
+#tweets .horizontal {
+  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e6ecf0;
+  margin-bottom: 0;
+}
+
+#tweets .avatar {
+  display: inline-block;
+  background-color: #999999;
+  padding: .5rem .7rem;
+  border-radius: 50%;
+  margin-top: 1.9rem;
+  margin-left: 1rem;
+}
+
+#tweets .card-content {
+  padding-left: .9rem;
+  padding-bottom: 0;
+}
+
+#tweets .card-content a .bold {
+  color: #14171A;
+}
+
+#tweets .card-content a:hover .bold {
+  color: #2AA3EF;
+  text-decoration: underline;
+}
+
+#tweets .card-content small {
+  position: relative;
+  top: -4px;
+}
+
+#tweets .card-action {
+  border-top: none;
+  padding-left: .9rem;
+  padding-bottom: .7rem;
+}
+
+#tweets .card-action span {
+  padding-left: .5rem;
+}
+
+.follow-btn {
+  border: 1px solid #2AA3EF;
+  border-radius: 100px;
+  font-size: .7rem;
+  font-weight: bold;
+  padding: 0 1.4rem;
+  height: 28px;
+  line-height: 28px;
+}
+
+.follow-btn:hover {
+  box-shadow: none;
+  background-color: #E8F5FD !important;
+}
+
+.collection {
+  border: none;
+}
+
+.to-follow {
+  padding: .1rem .7rem;
+}
+
+.to-follow .avatar {
+  padding-left: 50px !important;
+}
+
+.to-follow .avatar a {
+  font-size: 1rem;
+  color: #14171A;
+}
+
+.to-follow .avatar a:hover .bold {
+  color: #2AA3EF;
+  text-decoration: underline;
+}
+
+.to-follow .avatar i.circle:first-child {
+  left: .1rem!important;
+}
+
+.to-follow button {
+  margin-top: .4rem;
+}
+
+.to-follow a {
+  font-weight: normal;
+  font-size: .8rem;
+}
+
+.footer {
+  margin-top: 1rem;
+}

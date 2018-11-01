@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
 <?php require APPROOT . '/views/inc/navbar.php' ?>
-<main>
+<main class="section">
   <div class="container">
     <div class="row">
       <div class="col s12 m12 p-0">
