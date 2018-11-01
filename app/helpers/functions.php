@@ -33,6 +33,10 @@ function is_get_request() {
   return $_SERVER['REQUEST_METHOD'] === 'GET';
 }
 
+function is_ajax_request() {
+  return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest';
+}
+
 function get_and_clear_message() {
   if((isset($_SESSION['message'])) && ($_SESSION['message'] !== '')) {
     $message = $_SESSION['message'];
@@ -69,3 +73,28 @@ function flash($name = '', $message = '', $class = 'alert alert-success') {
 function get_random_string() {
   return bin2hex(openssl_random_pseudo_bytes(32));
 }
+
+function time_elapsed_string($datetime, $full = false) {
+  $now = new DateTime;
+  $ago = new DateTime($datetime);
+  $diff = $now->diff($ago);
+
+  $diff->w = floor($diff->d / 7);
+  $diff->d -= $diff->w * 7;
+
+  $string = array(
+      'y' => 'year',
+      'm' => 'month',
+      'w' => 'week',
+      'd' => 'day',
+      'h' => 'hour',
+      'i' => 'minute',
+      's' => 'second',
+  );
+  foreach ($string as $k => &$v) {
+      if ($diff->$k) {
+          $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+      } else {
+          unset($string[$k]);
+      }
+  }
