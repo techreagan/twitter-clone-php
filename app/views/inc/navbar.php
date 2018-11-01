@@ -1,4 +1,4 @@
-<nav id="navbar" class="white navbar">
+<nav id="navbar" class="white navbar navbar-fixed">
   <div class="container main-container">
     <div class="nav-wrapper">
       <a href="#" class="brand-logo color-black active"><i class="fab fa-twitter color-twitter icon"></i>Home</a>
