@@ -24,7 +24,7 @@ class Auth {
   
   public static function requireLogIn() {
     if(!self::isLoggedIn()) {
-      redirect(url_for('/'));
+      redirect('/');
     }
   }
 }

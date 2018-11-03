@@ -8,7 +8,8 @@ const tweetBodyInput = document.querySelector('#tweet-body');
 const postTweetBtn = document.querySelector('#postTweetBtn');
 const postForm = document.querySelector('#postForm');
 const followForm = document.querySelector('#followForm');
-const followBtn = document.querySelector('#followBtn');
+const followBtn = document.querySelectorAll('#followBtn');
+const collection = document.querySelector('.collection');
 const tweetDiv = document.querySelector('#tweets');
 const loader = document.querySelector('#loader');
 
@@ -68,27 +69,49 @@ function loadAllTweet() {
 }
 
 // Following system
-const followerId = followBtn.getAttribute('data-follower-id');
-const followingId = followBtn.getAttribute('data-following-id');
+followBtn.forEach((btn) => {
+  if(btn.classList.contains('following')) {
+    btn.innerHTML = 'Following';
+  }
+})
+
+// if(followBtn.classList.contains('following')) {
+//   followBtn.classList.add('following');
+//   followBtn.innerHTML = 'Following';
+// } else {
+//   followBtn.classList.remove('following');
+//   followBtn.innerHTML = 'Follow';
+// }
+
+collection.addEventListener('click', (e) => {
+  if(e.target.classList.contains('follow-btn')) {
+    const followerId = e.target.getAttribute('data-follower-id');
+    const followingId = e.target.getAttribute('data-following-id');
+    fetch(url + 'followSystem/follow', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: `followerId=${followerId}&followingId=${followingId}`
+    }) 
+      .then(res => res.text())
+      .then(data => {
+        if(data == 'follow') {
+          e.target.classList.add('following');
+          e.target.innerHTML = 'Following';
+        } else {
+          e.target.classList.remove('following');
+          e.target.innerHTML = 'Follow';
+        }
+      })  
+      .catch(err => console.log(err));
+    e.preventDefault();    
+  }
+  
+})
+
 
 followForm.addEventListener('submit', (e) => {
-  fetch(url + 'followSystem/follow', {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/x-www-form-urlencoded',
-      'X-Requested-With': 'XMLHttpRequest'
-    },
-    body: `followerId=${followerId}&followingId=${followingId}`
-  }) 
-    .then(res => res.text())
-    .then(data => {
-      console.log(data);
-      // loader.classList.add('hide');
-      // tweetBodyInput.value = '';
-      // loadAllTweet();
-    })  
-    .catch(err => console.log(err));
-
-
-  e.preventDefault();
+  
 });

@@ -327,6 +327,11 @@ main#index {
   line-height: 28px;
 }
 
+.follow-btn.following {
+  color: white!important;
+  background: #2AA3EF!important;
+}
+
 .follow-btn:hover {
   box-shadow: none;
   background-color: #E8F5FD !important;

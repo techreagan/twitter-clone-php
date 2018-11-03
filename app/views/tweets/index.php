@@ -45,8 +45,8 @@
           </div>
         </div>
         <div id="tweets">
-          
-      </div>
+        
+        </div>
 
       </div>
       <div class="col xl3 pl-0 hide-on-med-and-down hide-on-large-only show-on-extra-large">
@@ -59,36 +59,12 @@
               <a href="#"><i class="fa fa-user fa-4x circle"></i><a>
               <p class="title"><a href="#"><span class="bold"><?php echo ucwords(h($user->firstname)) . ' ' . ucwords(h($user->lastname)); ?></span><span class="color-grey"> @<?php echo h($user->username); ?></span></a> <br>
               <form method="POST" id="followForm">
-                <button type="submit" class="btn white color-twitter no-shadow follow-btn" data-follower-id="<?php echo $_SESSION['user_id'] ?>" data-following-id="<?php echo $user->id ?>" id="followBtn">Follow</button>
+                <button type="submit" class="btn white color-twitter no-shadow follow-btn <?php echo $data['follow']->isFollow($_SESSION['user_id'], $user->id); ?>" data-follower-id="<?php echo $_SESSION['user_id'] ?>" data-following-id="<?php echo $user->id ?>" id="followBtn">Follow</button>
               </form>
               </p>
               <a href="#!" class="secondary-content grey-text"><i class="fa fa-times"></i></a>
             </li>
             <?php endforeach; ?>
-            <li class="collection-item avatar">
-              <i class="material-icons circle">folder</i>
-              <span class="title">Title</span>
-              <p>First Line <br>
-                Second Line
-              </p>
-              <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-            </li>
-            <li class="collection-item avatar">
-              <i class="material-icons circle green">insert_chart</i>
-              <span class="title">Title</span>
-              <p>First Line <br>
-                Second Line
-              </p>
-              <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-            </li>
-            <li class="collection-item avatar">
-              <i class="material-icons circle red">play_arrow</i>
-              <span class="title">Title</span>
-              <p>First Line <br>
-                Second Line
-              </p>
-              <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-            </li>
           </ul>
         </div>
        

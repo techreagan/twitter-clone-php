@@ -5,12 +5,13 @@ class Users extends Controller {
 
   public function __construct() {
     $this->userModel = $this->model('User');
-    if(Auth::isLoggedIn()) {
-      redirect('tweets');
-    }
   }
 
   public function signup() {
+    if(Auth::isLoggedIn()) {
+      redirect('tweets');
+    }
+
     if(is_post_request()) {
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -84,8 +85,9 @@ class Users extends Controller {
       if(empty($data['firstName_err']) && empty($data['lastName_err']) && empty($data['email_err']) && empty($data['username_err']) && empty($data['dob_err']) && empty($data['password_err']) && empty($data['confirmPassword_err'])) {
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         
-        $sigup = $this->userModel->signup($data);
-        if($sigup) {
+        $signup = $this->userModel->signup($data);
+        if($signup) {
+          Auth::logIn($signup);
           redirect('tweets');
         } else {  
           die('Something went wrong');
@@ -115,6 +117,10 @@ class Users extends Controller {
   }
 
   public function login() {
+    if(Auth::isLoggedIn()) {
+      redirect('tweets');
+    }
+
     if(is_post_request()) {
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -158,6 +164,11 @@ class Users extends Controller {
     ];
 
     $this->view('users/login', $data);
+  }
+
+  public function logout() {
+    Auth::logOut();
+    redirect('/');
   }
 
 }
