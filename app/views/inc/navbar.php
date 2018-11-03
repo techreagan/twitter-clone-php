@@ -4,7 +4,7 @@
       <a href="<?php echo url_for('tweets') ?>" class="brand-logo color-black center"><i class="fab fa-twitter color-twitter icon"></i></a>
       <a href="#" data-target="slide-out" class="sidenav-trigger color-twitter"><i class="fa fa-list-alt fa-4x"></i></a>
       <ul class="left hide-on-med-and-down">
-        <li><a href="<?php echo url_for('tweets') ?>" class="color-black active center"><i class="fa fa-home color-twitter icon"></i>Home</a></li>
+        <li><a href="<?php echo url_for('tweets') ?>" class="color-black center<?php echo $active === 'tweets' ? ' active': ''; ?>"><i class="fa fa-home icon<?php echo $active === 'tweets' ? ' color-twitter': ''; ?>"></i>Home</a></li>
       </ul>
       <?php if(Auth::isLoggedIn()): ?>
       <form>
@@ -17,8 +17,10 @@
         <li>
           <button type="submit" class="btn no-shadow white" id="searchBtn"><i class="fa fa-search"></i></button>
         </li>
+         <!-- <li class="drop"><a class="dropdown-trigger" data-target="#hello" href="#"><i class="fa fa-user"></i></a></li> -->
         <a href="<?php echo url_for('users/logout') ?>" class="color-twitter right">Logout</a>
         <li><button type="button" class="btn no-shadow" id="tweetBtn">Tweet</button></li>
+
       </ul>
       </form>
       <?php endif; ?>

@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
-<?php require APPROOT . '/views/inc/navbar.php' ?>
+<?php $active = 'user_tweets'; require APPROOT . '/views/inc/navbar.php' ?>
 <?php $user = $data['user']; $users = $data['users']; $tweets = $data['tweets']; ?>
 <div class="banner">
 

@@ -151,15 +151,19 @@ main#index {
 
 .navbar a {
   height: 48px;
-  
+  color: #66757f !important;
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: .91rem!important;
 }
 
-.navbar a.active {
+.navbar a.active, .navbar a:hover {
   color: #2AA3EF !important;
   border-bottom: 3px solid #2AA3EF;
+}
+
+.navbar a:hover {
+  background: transparent;
 }
 
 .navbar i.icon {
@@ -206,6 +210,31 @@ main#index {
 
 .navbar #tweetBtn:hover, .navbar #searchBtn {
   box-shadow: none;
+}
+
+#profileNav a {
+  line-height: 13px !important;
+  margin-right: 1.5rem;
+  color: #66757f!important;
+  font-size: .77rem!important;
+  padding-top: 5px;
+  text-align: center;
+}
+
+#profileNav a.active span {
+  color: #2AA3EF;
+}
+
+#profileNav a:hover {
+  background: transparent;
+}
+
+#profileNav span {
+  color: #667785;
+  font-weight: bold;
+  font-size: 1.3rem;
+  display: block;
+  padding-top: 3px;
 }
 
 

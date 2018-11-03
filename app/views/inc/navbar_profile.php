@@ -1,13 +1,18 @@
-<nav id="navbar" class="white navbar navbar-fixed">
+<nav id="navbar" class="white navbar navbar-fixed hide-on-med-and-down">
   <div class="container main-container">
-    <div class="nav-wrapper">
-      <a href="<?php echo url_for('tweets') ?>" class="brand-logo color-black active"><i class="fab fa-twitter color-twitter icon"></i>Home</a>
-      <a href="<?php echo url_for('users/logout') ?>" class="color-twitter right">Logout</a>
-      <!-- <a href="" class="center brand-log">hello</a> -->
-      <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html"><i class="fa fa-user"></i></a></li>
-        <li><a href="#" class="btn bg-twitter white-text">Tweet</a></li>
-      </ul> -->
+    <div class="row">
+      <div class="col xl9 l8 offset-xl3 offset-l4 pl-0">
+        <div class="nav-wrapper">
+          <?php if($user->id == $_SESSION['user_id']): ?>
+          <a href="<?php echo url_for('users/editprofile/') . $data['username'] ?>" class="color-twitter right">Edit Profile</a>
+          <?php endif; ?>
+          <ul id="profileNav" class="left hide-on-med-and-down">
+            <li><a href="<?php echo url_for('tweets') ?>" class="color-black<?php echo $active === 'user_tweets' ? ' active': ''; ?>">Tweets<span>333</span></a></li>
+            <li><a href="<?php echo url_for('tweets') ?>" class="color-black<?php echo $active === 'following' ? ' active': ''; ?>">Following<span>333</span></a></li>
+            <li><a href="<?php echo url_for('tweets') ?>" class="color-black<?php echo $active === 'followers' ? ' active': ''; ?>">Followers<span>333</span></a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

@@ -16,11 +16,11 @@ class Tweet {
                       users.username
                       FROM
                           tweets as t
-                      JOIN following_sys ON t.user_id = following_sys.following_id or t.user_id = :user_id 
+                      JOIN following_sys ON t.user_id = following_sys.following_id  
                       join users on users.id = t.user_id 
                       ORDER BY t.id DESC
     ');
-    $this->db->bind('user_id', $_SESSION['user_id']);
+    // $this->db->bind('user_id', $_SESSION['user_id']);
     $tweets = $this->db->resultSet();
 
     return $tweets;
