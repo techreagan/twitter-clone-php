@@ -52,4 +52,14 @@ class Tweets extends Controller {
 
     $this->view('tweets/loadAllTweets', $data);
   }
+
+  public function loadUserTweets($username) {
+    
+    $data = [
+      'user' => $this->userModel->getUserById(),
+      'tweets' => $this->tweetModel->getAllTweetsByUserName($username),
+    ];
+
+    $this->view('tweets/loadUserTweets', $data);
+  }
 }

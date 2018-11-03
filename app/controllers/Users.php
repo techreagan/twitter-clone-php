@@ -174,7 +174,8 @@ class Users extends Controller {
       'user' => $this->userModel->getUserByUserName($username),
       'users' => $this->userModel->getAllUser(4),
       'tweets' => $this->tweetModel->getAllTweetsByUserName($username),
-      'follow' => $this->followModel
+      'follow' => $this->followModel, 
+      'username' => $username
     ];
   
     $this->view('users/profile', $data);

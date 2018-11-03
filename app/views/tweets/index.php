@@ -9,19 +9,19 @@
           <div class="bg-twitter">
             <div class="img">
               <!-- <img src="<?php echo h($user->profileimg) ?>" alt="<?php echo $user->username . '-avatar' ?>"> -->
-              <a href="#"><i class="fa fa-user fa-3x white-text"></i></a>
+              <a href="<?php echo url_for('users/profile/') . $user->username ?>"><i class="fa fa-user fa-3x white-text"></i></a>
             </div>
           </div>
           <div class="card-content">
-            <p><a href="#">
+            <p><a href="<?php echo url_for('users/profile/') . $user->username ?>">
               <?php echo h(ucwords($user->firstname)) . ' ' . h(ucwords($user->lastname)); ?></a>
               <span><?php echo '@' . h($user->username); ?>
             </p>
           </div>
           <div class="card-action pr-0">
-            <a href="#">Tweets<span class="color-twitter">123</span></a>
-            <a href="#">Following<span class="color-twitter">324</span></a>
-            <a href="#">Followers<span class="color-twitter">398</span></a>
+            <a href="<?php echo url_for('users/profile/') . $user->username ?>">Tweets<span class="color-twitter">123</span></a>
+            <a href="<?php echo url_for('users/following/') . $user->username ?>">Following<span class="color-twitter">324</span></a>
+            <a href="<?php echo url_for('users/followers/') . $user->username ?>">Followers<span class="color-twitter">398</span></a>
           </div>
         </div>
       </div>
@@ -49,15 +49,15 @@
         </div>
 
       </div>
-      <div class="col xl3 pl-0 hide-on-med-and-down hide-on-large-only show-on-extra-large">
+      <div class="col xl3 pl-0 hide-on-med-and-down hide-on-large-only show-on-extra-large pr-0">
         <div class="white to-follow">
           <p class="bold">Who to follow . <a href="#">View all</a></p>
 
           <ul class="collection">
             <?php foreach($users as $user): ?>
             <li class="collection-item avatar">
-              <a href="#"><i class="fa fa-user fa-4x circle"></i><a>
-              <p class="title"><a href="#"><span class="bold"><?php echo ucwords(h($user->firstname)) . ' ' . ucwords(h($user->lastname)); ?></span><span class="color-grey"> @<?php echo h($user->username); ?></span></a> <br>
+              <a href="<?php echo url_for('users/profile/') . $user->username ?>"><i class="fa fa-user fa-4x circle"></i><a>
+              <p class="title"><a href="<?php echo url_for('users/profile/') . $user->username ?>"><span class="bold"><?php echo ucwords(h($user->firstname)) . ' ' . ucwords(h($user->lastname)); ?></span><span class="color-grey"> @<?php echo h($user->username); ?></span></a> <br>
               <form method="POST" id="followForm">
                 <button type="submit" class="btn white color-twitter no-shadow follow-btn <?php echo $data['follow']->isFollow($_SESSION['user_id'], $user->id); ?>" data-follower-id="<?php echo $_SESSION['user_id'] ?>" data-following-id="<?php echo $user->id ?>" id="followBtn">Follow</button>
               </form>
@@ -83,5 +83,16 @@
 </main>
 <script src="<?php echo url_for('js/jquery.js'); ?>"></script>
 <script src="<?php echo url_for('js/materialize.min.js'); ?>"></script>
+<script>
+// document.addEventListener('DOMContentLoaded', function() {
+//   var elems = document.querySelector('.dropdown-trigger');
+//   var instances = M.Dropdown.init(elems);
+// });
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
+
+</script>
 <script src="<?php echo url_for('js/index.js'); ?>"></script>
 <?php require APPROOT . '/views/inc/footer.php' ?>

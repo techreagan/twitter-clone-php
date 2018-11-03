@@ -75,14 +75,6 @@ followBtn.forEach((btn) => {
   }
 })
 
-// if(followBtn.classList.contains('following')) {
-//   followBtn.classList.add('following');
-//   followBtn.innerHTML = 'Following';
-// } else {
-//   followBtn.classList.remove('following');
-//   followBtn.innerHTML = 'Follow';
-// }
-
 collection.addEventListener('click', (e) => {
   if(e.target.classList.contains('follow-btn')) {
     const followerId = e.target.getAttribute('data-follower-id');
@@ -110,7 +102,6 @@ collection.addEventListener('click', (e) => {
   }
   
 })
-
 
 followForm.addEventListener('submit', (e) => {
   

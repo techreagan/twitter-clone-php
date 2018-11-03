@@ -1,1 +1,3 @@
-// alert('hello world');
+
+
+// $('.dropdown-trigger').dropdown();

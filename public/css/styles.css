@@ -139,18 +139,18 @@ main#index {
 
 /* Navbar */
 .navbar {
-  height: 46px;
+  height: 48px;
   line-height: 46px;
   font-weight: bold
 }
 
 .navbar a, .navbar i {
   font-size: 1.1rem!important;
-  line-height: 46px!important;
+  line-height: 48px!important;
 }
 
 .navbar a {
-  height: 46px;
+  height: 48px;
   
   padding-left: 1rem;
   padding-right: 1rem;
@@ -166,6 +166,47 @@ main#index {
   margin-right: 5px!important;
 }
 
+.navbar .sidenav-trigger i {
+  font-size: 1.5rem !important;
+}
+
+.navbar #search {
+  /* background: #F5F8FA; */
+  /* border-radius: 21px; */
+  /* border: 1px solid #e6ecf0; */
+  /* height: 32px; */
+}
+
+.navbar #searchBtn {
+  margin-bottom: 8px;
+  color: #999999;
+}
+
+.navbar .drop i {
+  /* background-color: #999999;
+  /* padding: .5rem .7rem; */
+  line-height: 30px!important;
+  height: 30px !important;
+  background-color: #999999;
+  /* padding: .5rem; */
+  padding: 0 .5rem;
+  border-radius: 50%;
+}
+
+.navbar .drop a:hover {
+  background: transparent;
+}
+
+.navbar #tweetBtn {
+  background: #2AA3EF;
+  border-radius: 100px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.navbar #tweetBtn:hover, .navbar #searchBtn {
+  box-shadow: none;
+}
 
 
 /* Tweet */
