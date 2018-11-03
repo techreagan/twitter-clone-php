@@ -65,4 +65,13 @@ class Tweet {
       return false;
     }
   }
+
+  public function getTotalTweets() {
+    $this->db->query('SELECT id FROM TWEETS WHERE user_id = :user_id');
+    $this->db->bind('user_id', $_SESSION['user_id']);
+    $this->db->execute();
+
+    return $this->db->rowCount();
+  }
+
 }

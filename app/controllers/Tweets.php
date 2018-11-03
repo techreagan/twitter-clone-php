@@ -15,6 +15,9 @@ class Tweets extends Controller {
     $data = [
       'user' => $this->userModel->getUserById(),
       'users' => $this->userModel->getAllUser(4),
+      'total-tweets' => $this->tweetModel->getTotalTweets(),
+      'total-following' => $this->followModel->getTotalFollowing(),
+      'total-follower' => $this->followModel->getTotalFollower(),
       'follow' => $this->followModel
     ];
 

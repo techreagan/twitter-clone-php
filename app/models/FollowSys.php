@@ -52,4 +52,20 @@ class FollowSys {
       // return 'unfollow';
     }
   }
+
+  public function getTotalFollowing() {
+    $this->db->query('SELECT id FROM following_sys WHERE follower_id = :user_id');
+    $this->db->bind('user_id', $_SESSION['user_id']);
+    $this->db->execute();
+
+    return $this->db->rowCount();
+  }
+
+  public function getTotalFollower() {
+    $this->db->query('SELECT id FROM following_sys WHERE following_id = :user_id');
+    $this->db->bind('user_id', $_SESSION['user_id']);
+    $this->db->execute();
+
+    return $this->db->rowCount();
+  }
 }

@@ -19,9 +19,9 @@
             </p>
           </div>
           <div class="card-action pr-0">
-            <a href="<?php echo url_for('users/profile/') . $user->username ?>">Tweets<span class="color-twitter">123</span></a>
-            <a href="<?php echo url_for('users/following/') . $user->username ?>">Following<span class="color-twitter">324</span></a>
-            <a href="<?php echo url_for('users/followers/') . $user->username ?>">Followers<span class="color-twitter">398</span></a>
+            <a href="<?php echo url_for('users/profile/') . $user->username ?>">Tweets<span class="color-twitter center-align"><?php echo $data['total-tweets']; ?></span></a>
+            <a href="<?php echo url_for('users/following/') . $user->username ?>">Following<span class="color-twitter center-align"><?php echo $data['total-following']; ?></span></a>
+            <a href="<?php echo url_for('users/followers/') . $user->username ?>">Followers<span class="color-twitter center-align"><?php echo $data['total-follower']; ?></span></a>
           </div>
         </div>
       </div>

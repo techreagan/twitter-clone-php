@@ -22,7 +22,6 @@
                   <div class="input-field col s12">
                     <input id="password" name="password" type="password"<?php echo $data['password_err'] != '' ? ' class="is-invalid"' : ''; ?>>
                     <span class="helper-text invalid-feedback"><?php echo $data['password_err']; ?></span>
-                    <span class="helper-text">Password must be at least six(6) characters long and must contain one uppercase and number.</span>
                     <label for="password">Password</label>
                   </div>
                 </div>
