@@ -375,3 +375,14 @@ main#index {
 .footer {
   margin-top: 1rem;
 }
+
+/* Banner */
+.banner {
+  height: 200px;
+  background: #2AA3EF;
+  background-attachment: fixed;
+}
+
+.class {
+  height: 600px;
+}

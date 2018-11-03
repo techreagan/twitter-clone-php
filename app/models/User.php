@@ -58,6 +58,18 @@ class User {
     }
   }
 
+  public function getUserByUserName($username) {
+    $this->db->query('SELECT * FROM users WHERE username = :username');
+    $this->db->bind('username', $username);
+    $user = $this->db->single();
+
+    if($user) {
+      return $user;
+    } else {
+      return false;
+    }
+  }
+
   public function getAllUser($number) {
     $this->db->query('SELECT id, firstname, lastname, username FROM users WHERE id != :user_id LIMIT :number');
     $this->db->bind(':number', $number);

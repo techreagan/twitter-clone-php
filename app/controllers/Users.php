@@ -2,9 +2,12 @@
 
 class Users extends Controller {
   private $userModel;
+  private $tweetModel;
 
   public function __construct() {
     $this->userModel = $this->model('User');
+    $this->tweetModel = $this->model('Tweet');
+    $this->followModel = $this->model('FollowSys');
   }
 
   public function signup() {
@@ -164,6 +167,17 @@ class Users extends Controller {
     ];
 
     $this->view('users/login', $data);
+  }
+
+  public function profile($username) {
+    $data = [
+      'user' => $this->userModel->getUserByUserName($username),
+      'users' => $this->userModel->getAllUser(4),
+      'tweets' => $this->tweetModel->getAllTweetsByUserName($username),
+      'follow' => $this->followModel
+    ];
+  
+    $this->view('users/profile', $data);
   }
 
   public function logout() {

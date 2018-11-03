@@ -1,5 +1,5 @@
 <nav id="navbar" class="white navbar navbar-fixed">
-  <div class="container<?php echo Auth::isLoggedIn() ? " main-container" : '' ?>">
+  <div class="container main-container">
     <div class="nav-wrapper">
       <a href="<?php echo url_for('tweets') ?>" class="brand-logo color-black active"><i class="fab fa-twitter color-twitter icon"></i>Home</a>
       <a href="<?php echo url_for('users/logout') ?>" class="color-twitter right">Logout</a>

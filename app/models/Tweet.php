@@ -40,6 +40,20 @@ class Tweet {
     }
   }
 
+  public function getAllTweetsByUserName($username) {
+    $this->db->query('SELECT * FROM tweets 
+                      JOIN users as user on user.id = tweets.user_id  
+                      WHERE username = :username ORDER BY tweets.id DESC');
+    $this->db->bind('username', $username);
+    $tweets = $this->db->resultSet();
+
+    if($tweets) {
+      return $tweets;
+    } else {
+      return false;
+    }
+  }
+
   public function postTweet($body) {
     $this->db->query('INSERT INTO tweets(user_id, body) VALUES(:user_id, :body)');
     $this->db->bind('user_id', $_SESSION['user_id']);
