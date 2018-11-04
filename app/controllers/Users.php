@@ -174,11 +174,46 @@ class Users extends Controller {
       'user' => $this->userModel->getUserByUserName($username),
       'users' => $this->userModel->getAllUser(4),
       'tweets' => $this->tweetModel->getAllTweetsByUserName($username),
+      'total-tweets' => $this->tweetModel->getTotalTweetsByUserName($username),
+      'total-following' => $this->followModel->getTotalFollowingByUserName($username),
+      'total-followers' => $this->followModel->getTotalFollowersByUserName($username),
       'follow' => $this->followModel, 
       'username' => $username
     ];
   
     $this->view('users/profile', $data);
+  }
+
+  public function following($username) {
+    $data = [
+      'user' => $this->userModel->getUserByUserName($username),
+      'users' => $this->userModel->getAllUser(4),
+      'tweets' => $this->tweetModel->getAllTweetsByUserName($username),
+      'total-tweets' => $this->tweetModel->getTotalTweetsByUserName($username),
+      'total-following' => $this->followModel->getTotalFollowingByUserName($username),
+      'total-followers' => $this->followModel->getTotalFollowersByUserName($username),
+      'following' => $this->followModel->getFollowingByUserName($username),
+      'follow' => $this->followModel, 
+      'username' => $username
+    ];
+
+    $this->view('users/following', $data);
+  }
+
+  public function followers($username) {
+    $data = [
+      'user' => $this->userModel->getUserByUserName($username),
+      'users' => $this->userModel->getAllUser(4),
+      'tweets' => $this->tweetModel->getAllTweetsByUserName($username),
+      'total-tweets' => $this->tweetModel->getTotalTweetsByUserName($username),
+      'total-following' => $this->followModel->getTotalFollowingByUserName($username),
+      'total-followers' => $this->followModel->getTotalFollowersByUserName($username),
+      'followers' => $this->followModel->getFollowersByUserName($username),
+      'follow' => $this->followModel, 
+      'username' => $username
+    ];
+
+    $this->view('users/followers', $data);
   }
 
   public function logout() {

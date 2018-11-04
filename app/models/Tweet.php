@@ -6,7 +6,7 @@ class Tweet {
   }
 
   public function getAllTweets() {
-    $this->db->query('SELECT
+    $this->db->query('SELECT Distinct
                       t.user_id,
                       t.body,
                       t.created_at,
@@ -16,11 +16,12 @@ class Tweet {
                       users.username
                       FROM
                           tweets as t
-                      JOIN following_sys ON t.user_id = following_sys.following_id  
-                      join users on users.id = t.user_id 
+                      JOIN following_sys ON t.user_id = following_sys.following_id OR t.user_id = :user_id
+                      join users on users.id = t.user_id
+                      where following_sys.follower_id = :user_id
                       ORDER BY t.id DESC
     ');
-    // $this->db->bind('user_id', $_SESSION['user_id']);
+    $this->db->bind('user_id', $_SESSION['user_id']);
     $tweets = $this->db->resultSet();
 
     return $tweets;
@@ -69,6 +70,17 @@ class Tweet {
   public function getTotalTweets() {
     $this->db->query('SELECT id FROM TWEETS WHERE user_id = :user_id');
     $this->db->bind('user_id', $_SESSION['user_id']);
+    $this->db->execute();
+
+    return $this->db->rowCount();
+  }
+
+  public function getTotalTweetsByUserName($username) {
+    $this->db->query('SELECT tweets.id FROM TWEETS 
+                      JOIN users ON users.id = tweets.user_id
+                      WHERE users.username = :username
+    ');
+    $this->db->bind('username', $username);
     $this->db->execute();
 
     return $this->db->rowCount();

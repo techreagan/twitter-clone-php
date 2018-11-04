@@ -237,6 +237,42 @@ main#index {
   padding-top: 3px;
 }
 
+#user-profile {
+  padding-top: 20px !important;
+  margin-bottom: 20px;
+}
+
+#user-profile .card {
+  margin: 0;
+  background: transparent;
+}
+
+#user-profile .card-content {
+  padding-top: 0;
+}
+
+#user-profile h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+#user-profile h1 a, #user-profile .bio {
+  color: #14171A;
+}
+
+#user-profile .handle, #user-profile .handle a {
+  color: #657786;
+}
+
+#user-profile .bio {
+  margin-top: 1rem;
+}
+
+#user-profile .card .card-action {
+  border-top: none;
+}
+
 
 /* Tweet */
 .main-container {
@@ -313,7 +349,7 @@ main#index {
   border-top: none;
 } 
 
-.card-profile.card .card-action:last-child a {
+.card-profile.card .card-action:last-child a, #user-profile .card-action:last-child a {
   display: inline-block;
   color: #657786!important;
   font-weight: bold!important;
@@ -322,9 +358,22 @@ main#index {
   text-transform: capitalize !important;
 }
 
-.card-profile.card .card-action:last-child span {
+.card-profile.card .card-action:last-child span, #user-profile .card-action:last-child span {
   display: block;
   font-size: 1.2rem;
+}
+
+.card-profile.card .isFollow {
+  background: #E6ECF0;
+  padding: .2rem .3rem;
+  /* font-size: .7rem; */
+  font-style: normal;
+  border-radius: 5px;
+  margin-left: 1rem;
+}
+
+#user-profile .card-action {
+  padding: 0;
 }
 
 .tweet {
@@ -402,9 +451,10 @@ main#index {
   background: #2AA3EF!important;
 }
 
+
 .follow-btn:hover {
   box-shadow: none;
-  background-color: #E8F5FD !important;
+  /* background-color: #E8F5FD !important; */
 }
 
 .collection {
@@ -451,6 +501,42 @@ main#index {
   height: 200px;
   background: #2AA3EF;
   background-attachment: fixed;
+  position: relative;
+}
+
+.banner a {
+  position: absolute;
+  top: 90px;
+  display: block;
+  z-index: 1100;
+  bottom: -50px;
+  font-size: 2.8rem;
+  margin-left: 4rem;
+}
+
+.banner a i {
+  padding: 1.5rem 2rem;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  display: block;
+  background-color:#999999;
+}
+
+@media (max-width: 992px) {
+  .banner a {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 622px) {
+  .banner {
+    height: 150px;
+  }
+  .banner a {
+    top: 50px;
+    margin-left: 3rem;
+    font-size: 1.8rem;
+  }
 }
 
 .class {

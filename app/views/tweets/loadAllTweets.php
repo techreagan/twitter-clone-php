@@ -8,7 +8,6 @@
 <?php else: 
 if (!$tweets) {
   $tweets = $user_tweets; 
-  echo 'hello';
 } 
 foreach($tweets as $tweet): ?>
 <div class="card horizontal no-shadow">

@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
-<?php $active = 'user_tweets'; require APPROOT . '/views/inc/navbar.php' ?>
+<?php $active = 'following'; require APPROOT . '/views/inc/navbar.php' ?>
 <?php $user = $data['user']; $users = $data['users']; $tweets = $data['tweets']; ?>
 <div class="banner">
   <div id="bigProfileImage">
@@ -24,30 +24,41 @@
             <a href="<?php echo url_for('users/following/') . $user->username ?>">Following<span class="color-twitter center-align"><?php echo $data['total-following']; ?></span></a>
             <a href="<?php echo url_for('users/followers/') . $user->username ?>">Followers<span class="color-twitter center-align"><?php echo $data['total-followers']; ?></span></a>
           </div>
+          
         </div>
       </div>
-      <div class="divider hide-on-med-and-down"></div>
+      
       <div class="col xl6 l8 m12 s12 pl-0">
-        <div class="card card-horizontal tweet no-shadow">
-          <form method="post" action="<?php echo url_for('tweets/postTweet') ?>" id="postForm">
-            <div class="card-content">
-              <div class="input-field">
-                <textarea id="tweet-body" class="materialize-textarea" data-length="280" placeholder="What's happening?"></textarea>
+  
+        <div id="following">
+          <?php foreach($data['following'] as $following_users): ?>
+          <?php foreach($data['follow']->getFollow($following_users->following_id) as $user): ?>
+          <!-- <?php //echo $user->id; ?>
+          <pre>
+            <?php //echo  $following_users->following_id;  var_dump($user); ?>
+          </pre> -->
+          <div class="col m6 s12 pl-0">
+            <div class="card card-profile no-shadow">
+              <div class="bg-twitter">
+                <div class="img">
+                  <!-- <img src="<?php echo h($user->profileimg) ?>" alt="<?php echo $user->username . '-avatar' ?>"> -->
+                  <a href="<?php echo url_for('users/profile/') . $user->username ?>"><i class="fa fa-user fa-3x white-text"></i></a>
+                </div>
+              </div>
+              <div class="card-content">
+                <p><a href="<?php echo url_for('users/profile/') . $user->username ?>">
+                  <?php echo h(ucwords($user->firstname)) . ' ' . h(ucwords($user->lastname)); ?></a>
+                  <span><?php echo '@' . h($user->username); ?><?php echo $data['follow']->findFollow($user->id, $_SESSION['user_id']) && ($_SESSION['user_id'] != $user->id) ? '<i class="isFollow">Follows you</i>' : '' ?></span>
+                </p>
+                <div class="followForm section">
+                  <?php if($_SESSION['user_id'] != $user->id): ?>
+                  <button type="submit" class="btn white color-twitter no-shadow follow-btn <?php echo $data['follow']->isFollow($_SESSION['user_id'], $user->id); ?>" data-follower-id="<?php echo $_SESSION['user_id'] ?>" data-following-id="<?php echo $user->id ?>" id="followBtn">Follow</button>
+                  <?php endif; ?>
+                </div>
               </div>
             </div>
-            <div class="card-action right-align">
-              <input id="postTweetBtn" type="submit" value="Tweet" class="btn bg-twitter no-shadow">
-            </div>
-          </form>
-        </div>
-        <div id="loader" class="hide">
-          <p>Sending Tweet</p>
-          <div class="progress">
-            <div class="indeterminate"></div>
           </div>
-        </div>
-        <div id="tweets">
-        
+          <?php endforeach; endforeach; ?>
         </div>
 
       </div>
@@ -57,13 +68,14 @@
 
           <ul class="collection">
             <?php foreach($users as $user): ?>
+            
             <li class="collection-item avatar">
               <a href="<?php echo url_for('users/profile/') . $user->username; ?>"><i class="fa fa-user fa-4x circle"></i><a>
-              <p class="title"><a href="<?php echo url_for('users/profile/') . $user->username; ?>"><span class="bold"><?php echo ucwords(h($user->firstname)) . ' ' . ucwords(h($user->lastname)); ?></span><span class="color-grey"> @<?php echo h($user->username); ?></span></a> <br>
+              <p class="title truncate"><a href="<?php echo url_for('users/profile/') . $user->username; ?>"><span class="bold"><?php echo ucwords(h($user->firstname)) . ' ' . ucwords(h($user->lastname)); ?></span><span class="color-grey"> @<?php echo h($user->username); ?></span></a> <br>
         
-              <form method="POST" id="followForm">
+              <div class="followForm">
                 <button type="submit" class="btn white color-twitter no-shadow follow-btn <?php echo $data['follow']->isFollow($_SESSION['user_id'], $user->id); ?>" data-follower-id="<?php echo $_SESSION['user_id'] ?>" data-following-id="<?php echo $user->id ?>" id="followBtn">Follow</button>
-              </form>
+              </div>
               </p>
               <a href="#!" class="secondary-content grey-text"><i class="fa fa-times"></i></a>
             </li>
@@ -89,5 +101,5 @@
 <input type="hidden" id="username" name="username" value="<?php echo $data['username']; ?>">
 <script src="<?php echo url_for('js/jquery.js'); ?>"></script>
 <script src="<?php echo url_for('js/materialize.min.js'); ?>"></script>
-<script src="<?php echo url_for('js/profile.js'); ?>"></script>
+<script src="<?php echo url_for('js/follow.js'); ?>"></script>
 <?php require APPROOT . '/views/inc/footer.php' ?>
