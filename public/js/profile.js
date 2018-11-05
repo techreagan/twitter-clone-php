@@ -60,6 +60,7 @@ function loadAllTweet() {
     .then(res => res.text())
     .then(data => {
       populateTweets(data);
+      // console.log(data);
     })
     .catch(err => console.log(err));
 }
@@ -94,5 +95,60 @@ collection.addEventListener('click', (e) => {
       .catch(err => console.log(err));
     e.preventDefault();    
   }
+  
+})
+
+tweetDiv.addEventListener('click', (e) => {
+  let tweet = e.target.parentElement;
+  let userId = tweet.getAttribute('data-user');
+  let tweetId = tweet.getAttribute('data-tweet');
+  if(e.target.parentElement.classList.contains('likeBtn')) {
+    fetch(url + 'tweets/likeTweet', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: `userId=${userId}&tweetId=${tweetId}`
+    })
+    .then(res => res.text())
+    .then(data => {
+      data = JSON.parse(data);
+      if(data.like == 'yes') {
+        tweet.classList.add('liked')
+        tweet.lastElementChild.innerHTML = data.like_number;
+      } else {
+        tweet.classList.remove('liked')
+        tweet.lastElementChild.innerHTML = data.like_number;
+      }
+      
+    })
+    .catch(err => err);
+    e.preventDefault();
+  }
+
+  if(e.target.parentElement.classList.contains('deleteBtn')) {
+    let tweetId = e.target.parentElement.getAttribute('data-id');
+    fetch(url + 'tweets/deleteTweet', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: `tweetId=${tweetId}`
+    })
+    .then(res => res.text())
+    .then(data => {
+      if(data == 'deleted') {
+        e.target.parentElement.parentElement.parentElement.parentElement.remove();
+      } else {
+       console.log('something happened');
+      }
+      
+    })
+    .catch(err => err);
+    e.preventDefault();
+  }
+  
   
 })

@@ -70,9 +70,13 @@ class User {
     }
   }
 
-  public function getAllUser($number) {
-    $this->db->query('SELECT id, firstname, lastname, username FROM users WHERE id != :user_id LIMIT :number');
-    $this->db->bind(':number', $number);
+  public function getAllUser($number = 0) {
+    if($number == 0) {
+      $this->db->query('SELECT id, firstname, lastname, username FROM users WHERE id != :user_id');
+    } else {
+      $this->db->query('SELECT id, firstname, lastname, username FROM users WHERE id != :user_id LIMIT :number');
+      $this->db->bind(':number', $number);
+    }
     $this->db->bind('user_id', $_SESSION['user_id']);
     $users = $this->db->resultSet();
 

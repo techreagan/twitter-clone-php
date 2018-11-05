@@ -50,7 +50,21 @@ postForm.addEventListener('submit', (e) => {
 });
 
 function populateTweets(tweets) {
-  tweetDiv.innerHTML = tweets;
+  tweetDiv.appendChild(tweets);
+}
+
+function appendToDiv(div, new_html) {
+  let temp = document.createElement('div');
+  temp.innerHTML = new_html;
+
+  let class_name = temp.firstElementChild.className;
+  let items = temp.getElementsByClassName(class_name);
+
+  items = Array.from(items);
+
+  items.forEach((item) => {
+    div.appendChild(item);
+  })
 }
 
 function loadAllTweet() {
@@ -63,7 +77,8 @@ function loadAllTweet() {
   }) 
     .then(res => res.text())
     .then(data => {
-      populateTweets(data);
+      // populateTweets(data);
+      appendToDiv(tweetDiv, data);
     })
     .catch(err => console.log(err));
 }
@@ -104,5 +119,63 @@ collection.addEventListener('click', (e) => {
 })
 
 followForm.addEventListener('submit', (e) => {
-  
+});
+
+tweetDiv.addEventListener('click', (e) => {
+  let tweet = e.target.parentElement;
+  let userId = tweet.getAttribute('data-user');
+  let tweetId = tweet.getAttribute('data-tweet');
+  if(e.target.parentElement.classList.contains('likeBtn')) {
+    fetch(url + 'tweets/likeTweet', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: `userId=${userId}&tweetId=${tweetId}`
+    })
+    .then(res => res.text())
+    .then(data => {
+      data = JSON.parse(data);
+      if(data.like == 'yes') {
+        tweet.classList.add('liked')
+        tweet.lastElementChild.innerHTML = data.like_number;
+      } else {
+        tweet.classList.remove('liked')
+        tweet.lastElementChild.innerHTML = data.like_number;
+      }
+      
+    })
+    .catch(err => err);
+    e.preventDefault();
+  }
+
+  if(e.target.parentElement.classList.contains('deleteBtn')) {
+    let tweetId = e.target.parentElement.getAttribute('data-id');
+    fetch(url + 'tweets/deleteTweet', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: `tweetId=${tweetId}`
+    })
+    .then(res => res.text())
+    .then(data => {
+      if(data == 'deleted') {
+        e.target.parentElement.parentElement.parentElement.parentElement.remove();
+      } else {
+       console.log('something happened');
+      }
+      
+    })
+    .catch(err => err);
+    e.preventDefault();
+  }
+
+})
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelector('.modal');
+  var instances = M.Modal.init(elems);
 });

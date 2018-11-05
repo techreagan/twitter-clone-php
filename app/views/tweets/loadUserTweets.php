@@ -1,4 +1,4 @@
-<?php $tweets = $data['tweets']; ?>
+<?php $tweets = $data['tweets']; $user = $data['user']; $like = $data['likes'];?>
 <?php foreach($tweets as $tweet): ?>
   <div class="card horizontal no-shadow">
     <div class="card-image">
@@ -10,7 +10,10 @@
       <p class="tweet-body"><?php echo $tweet->body; ?></p>
       </div>
       <div class="card-action">
-        <a href="#" class="color-grey"><i class="fa fa-heart"></i> <span>234</span></a>
+      <a href="#" class="color-grey likeBtn<?php echo $like->isLike($user->id, $tweet->tweet_id) ? ' liked': '' ?>" data-user="<?php echo $user->id; ?>" data-tweet="<?php echo $tweet->tweet_id; ?>"><i class="fa fa-heart"></i> <span><?php echo $like->getTotalLikes($tweet->tweet_id); ?></span></a>
+      <?php if($tweet->user_id == $_SESSION['user_id']): ?>
+      <a href="#" class="color-grey deleteBtn" data-id="<?php echo $tweet->tweet_id; ?>"><i class="fa fa-times"></i></a>
+      <?php endif; ?>
       </div>
     </div>
   </div>

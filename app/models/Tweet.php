@@ -42,7 +42,7 @@ class Tweet {
   }
 
   public function getAllTweetsByUserName($username) {
-    $this->db->query('SELECT * FROM tweets 
+    $this->db->query('SELECT *, tweets.id as tweet_id FROM tweets 
                       JOIN users as user on user.id = tweets.user_id  
                       WHERE username = :username ORDER BY tweets.id DESC');
     $this->db->bind('username', $username);
@@ -85,5 +85,60 @@ class Tweet {
 
     return $this->db->rowCount();
   }
+
+  public function like($user_id, $tweet_id) {
+    $this->db->query('INSERT INTO likes(user_id, tweet_id) VALUES(:user_id, :tweet_id)');
+    $this->db->bind('user_id', $user_id);
+    $this->db->bind('tweet_id', $tweet_id);
+
+    if($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function unlike($user_id, $tweet_id) {
+    $this->db->query('DELETE FROM likes WHERE user_id = :user_id AND tweet_id = :tweet_id LIMIT 1');
+    $this->db->bind('user_id', $user_id);
+    $this->db->bind('tweet_id', $tweet_id);
+
+    if($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function isLike($user_id, $tweet_id) {
+    $this->db->query('SELECT id FROM likes WHERE user_id = :user_id AND tweet_id = :tweet_id');
+    $this->db->bind('user_id', $user_id);
+    $this->db->bind('tweet_id', $tweet_id);
+    $user = $this->db->single();
+    if($user) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function getTotalLikes($tweet_id) {
+    $this->db->query('SELECT id FROM likes WHERE tweet_id = :tweet_id');
+    $this->db->bind('tweet_id', $tweet_id);
+    $this->db->execute();
+
+    return $this->db->rowCount();
+  }
+
+  public function deleteTweet($id) {
+    $this->db->query('DELETE FROM tweets WHERE id = :id LIMIT 1');
+    $this->db->bind('id', $id);
+    if($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 
 }

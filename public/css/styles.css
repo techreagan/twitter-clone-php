@@ -157,7 +157,7 @@ main#index {
   font-size: .91rem!important;
 }
 
-.navbar a.active, .navbar a:hover {
+.navbar a.active, .navbar ul a:hover {
   color: #2AA3EF !important;
   border-bottom: 3px solid #2AA3EF;
 }
@@ -433,7 +433,28 @@ main#index {
 }
 
 #tweets .card-action span {
-  padding-left: .5rem;
+  padding-left: 10px;
+  font-weight: bold;
+  font-size: .9rem;
+}
+
+#tweets .liked {
+  color: rgb(224, 36, 94) !important;
+  animation-name: grow;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+}
+
+
+
+@keyframes grow {
+  0% {
+    transform: scale(0);
+  } 
+  100% {
+    transform: scale(2);
+  }
 }
 
 .follow-btn {
@@ -541,4 +562,8 @@ main#index {
 
 .class {
   height: 600px;
+}
+
+h5.modal-header {
+  margin-left: 25px !important;
 }

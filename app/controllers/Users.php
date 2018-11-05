@@ -177,7 +177,8 @@ class Users extends Controller {
       'total-tweets' => $this->tweetModel->getTotalTweetsByUserName($username),
       'total-following' => $this->followModel->getTotalFollowingByUserName($username),
       'total-followers' => $this->followModel->getTotalFollowersByUserName($username),
-      'follow' => $this->followModel, 
+      'follow' => $this->followModel,
+      'likes' => $this->tweetModel, 
       'username' => $username
     ];
   
