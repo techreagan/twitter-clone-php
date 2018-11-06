@@ -39,8 +39,44 @@ main {
 }
 
 main#index {
-  background: #2AA3EF;
   height: 100%;
+}
+
+main#index .row {
+  margin-top: 8rem;
+}
+
+main#index h1 {
+  margin-top: .3rem;
+  font-size: 1.9rem;
+  font-weight: bold;
+  text-align: left
+}
+
+main#index p {
+  font-weight: bold;
+}
+
+main#index a {
+  width: 100%!important;
+  border-radius: 110px;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+main#index a.login {
+  background: white;
+}
+
+main#index a.login:hover {
+  box-shadow: none;
+  background-color: #EAF5FD;
+}
+
+main#index a.signup:hover {
+  box-shadow: none;
+  background: #106FBC!important;
 }
 
 .mt-0 {
