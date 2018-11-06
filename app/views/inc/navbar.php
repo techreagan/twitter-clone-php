@@ -7,11 +7,11 @@
         <li><a href="<?php echo url_for('tweets') ?>" class="color-black center<?php echo $active === 'tweets' ? ' active': ''; ?>"><i class="fa fa-home icon<?php echo $active === 'tweets' ? ' color-twitter': ''; ?>"></i> Home</a></li>
       </ul>
       <?php if(Auth::isLoggedIn()): ?>
-      <form>
+      <form action="<?php echo url_for('users/search/') ?>" method="get">
       <ul class="right hide-on-med-and-down">
         <li>
           <div class="input-field">
-            <input id="search" type="text" placeholder="Search Twitter">
+            <input id="search" name="user" type="text" placeholder="Search Twitter">
           </div>
         </li>
         <li>

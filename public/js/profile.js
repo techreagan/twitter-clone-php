@@ -1,3 +1,7 @@
+$(document).ready(function() {
+  $('textarea').characterCounter();
+});
+
 const tweetBodyInput = document.querySelector('#tweet-body');
 const postTweetBtn = document.querySelector('#postTweetBtn');
 const postForm = document.querySelector('#postForm');

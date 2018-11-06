@@ -34,6 +34,14 @@ class User {
     }
   }
 
+  public function searchForUser($user) {
+    $this->db->query('SELECT id, firstname, lastname, username FROM users 
+                      WHERE firstname LIKE :user OR lastname LIKE :user OR username LIKE :user
+                    ');
+    $this->db->bind('user', '%' . $user . '%');
+    return $this->db->resultSet();
+  }
+
   public function findEmailOrUsername($value) {
     $this->db->query('SELECT username, email FROM users WHERE username = :value or email = :value');
     $this->db->bind('value', $value);
@@ -81,5 +89,39 @@ class User {
     $users = $this->db->resultSet();
 
     return $users;
+  }
+
+  public function updateInfo($info) {
+    $query = 'UPDATE users SET ';
+    $count = 0;
+    foreach($info as $key => $value) {
+      $count++;
+      $query .= $key .  ' = :' . $key . ($count == count($info) ? ' ' : ', ');
+    }
+    $query .= 'WHERE id = :id';
+    
+    $this->db->query($query);
+    foreach($info as $key => $value) {
+      $this->db->bind($key, $value);
+    }
+    $this->db->bind('id', $_SESSION['user_id']);
+    if($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function updatePassword($password) {
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    $this->db->query('UPDATE users SET password = :password WHERE id = :id LIMIT 1');
+    $this->db->bind('password', $password);
+    $this->db->bind('id', $_SESSION['user_id']);
+    
+    if($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
