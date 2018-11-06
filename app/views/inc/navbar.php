@@ -33,18 +33,21 @@
 </nav>
 
 <ul id="slide-out" class="sidenav">
-    <li><div class="user-view">
+    <li><div class="user-view bg-twitter">
       <div class="background">
-        <img src="images/office.jpg">
       </div>
-      <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
-      <a href="#name"><span class="white-text name">John Doe</span></a>
-      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+      <a href="<?php echo url_for('users/profile/') . $user->username ?>"><i class="fa fa-user fa-3x white-text"></i></a>
+      <a href="#name"><span class="white-text name"> <?php echo h(ucwords($user->firstname)) . ' ' . h(ucwords($user->lastname)); ?></span></a>
+      <a href="#email"><span class="white-text email">@<?php echo $user->username; ?></span></a>
+      <div class="card pt-0 no-shadow">
+        <div class="card-action pt-0 pl-0 pr-0">
+          <a href="<?php echo url_for('users/following/') . $user->username ?>"><span><?php echo $data['total-following']; ?></span> Following</a>
+          <a href="<?php echo url_for('users/followers/') . $user->username ?>"><span class="center-align"><?php echo $data['total-follower']; ?></span> Followers</a>
+        </div>
+      </div>
     </div></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-    <li><a href="#!">Second Link</a></li>
+    <li><a href="<?php echo url_for('users/profile/') . h($user->username); ?>">Profile</a></li>
+    <li><a href="<?php echo url_for('users/search'); ?>">Search</a></li>
     <li><div class="divider"></div></li>
-    <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="<?php echo url_for('users/logout'); ?>">Logout</a></li>
   </ul>
-

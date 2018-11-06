@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
-<?php $active = 'user_tweets'; require APPROOT . '/views/inc/navbar.php' ?>
-<?php $user = $data['user']; $users = $data['users']; $tweets = $data['tweets']; ?>
+<?php $active = 'user_tweets'; $user = $data['user']; require APPROOT . '/views/inc/navbar.php' ?>
+<?php $users = $data['users']; $tweets = $data['tweets']; $getAllUsers = $data['getAllUsers']; ?>
 <div class="banner">
   <div id="bigProfileImage">
     <a href="#"><i class="fa fa-user fa-3x white-text"></i></a>
@@ -22,8 +22,14 @@
           <div class="card-action pr-0 hide-on-large-only">
             <a href="<?php echo url_for('users/profile/') . $user->username ?>">Tweets<span class="color-twitter center-align"><?php echo $data['total-tweets']; ?></span></a>
             <a href="<?php echo url_for('users/following/') . $user->username ?>">Following<span class="color-twitter center-align"><?php echo $data['total-following']; ?></span></a>
-            <a href="<?php echo url_for('users/followers/') . $user->username ?>">Followers<span class="color-twitter center-align"><?php echo $data['total-followers']; ?></span></a>
+            <a href="<?php echo url_for('users/followers/') . $user->username ?>">Followers<span class="color-twitter center-align"><?php echo $data['total-follower']; ?></span></a>
           </div>
+          
+        </div>
+        <div id="editProfile" class="col pl-0 hide-on-large-only">
+        <?php if($user->id == $_SESSION['user_id']): ?>
+          <a href="<?php echo url_for('users/editprofile/') . $data['username'] ?>" class="bg-twitter btn white-text">Edit Profile</a>
+          <?php endif; ?>
         </div>
       </div>
       <div class="divider hide-on-med-and-down"></div>
@@ -53,7 +59,7 @@
       </div>
       <div class="col xl3 pl-0 hide-on-med-and-down hide-on-large-only show-on-extra-large">
         <div class="white to-follow">
-          <p class="bold">Who to follow . <a href="#">View all</a></p>
+          <p class="bold">Who to follow . <a href="#viewAll" class="modal-trigger">View all</a></p>
 
           <ul class="collection">
             <?php foreach($users as $user): ?>
@@ -71,6 +77,25 @@
             <?php endforeach; ?>
             
           </ul>
+          <!-- Modal Structure -->
+          <div id="viewAll" class="modal">
+            <h5 class="modal-header">Who to follow</h5>
+            <div class="modal-content">
+              <ul class="collection">
+                <?php foreach($getAllUsers as $user): ?>
+                <li class="collection-item avatar">
+                  <a href="<?php echo url_for('users/profile/') . $user->username ?>"><i class="fa fa-user fa-4x circle"></i><a>
+                  <p class="title"><a href="<?php echo url_for('users/profile/') . $user->username ?>"><span class="bold"><?php echo ucwords(h($user->firstname)) . ' ' . ucwords(h($user->lastname)); ?></span><span class="color-grey"> @<?php echo h($user->username); ?></span></a> <br>
+                  <form method="POST" id="followForm">
+                    <button type="submit" class="btn white color-twitter no-shadow follow-btn <?php echo $data['follow']->isFollow($_SESSION['user_id'], $user->id); ?>" data-follower-id="<?php echo $_SESSION['user_id'] ?>" data-following-id="<?php echo $user->id ?>" id="followBtn">Follow</button>
+                  </form>
+                  </p>
+                  <a href="#!" class="secondary-content grey-text"><i class="fa fa-times"></i></a>
+                </li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          </div>
         </div>
       
         <div class="card no-shadow footer">
@@ -89,5 +114,14 @@
 <input type="hidden" id="username" name="username" value="<?php echo $data['username']; ?>">
 <script src="<?php echo url_for('js/jquery.js'); ?>"></script>
 <script src="<?php echo url_for('js/materialize.min.js'); ?>"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems);
+
+  var modal = document.querySelector('.modal');
+  var modalInst = M.Modal.init(modal);
+});
+</script>
 <script src="<?php echo url_for('js/profile.js'); ?>"></script>
 <?php require APPROOT . '/views/inc/footer.php' ?>

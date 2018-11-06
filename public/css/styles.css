@@ -533,7 +533,7 @@ main#index {
   position: absolute;
   top: 90px;
   display: block;
-  z-index: 1100;
+  z-index: 998;
   bottom: -50px;
   font-size: 2.8rem;
   margin-left: 4rem;
@@ -578,4 +578,26 @@ h5.modal-header {
 
 .personalInfo .card-content {
   padding-top: 10px;
+}
+
+#editProfile {
+  margin-top: 10px;
+  background: transparent ;
+}
+
+#slide-out .name {
+  font-weight: bold;
+}
+
+#slide-out .card {
+  background: transparent;
+}
+
+#slide-out .card a {
+  text-transform: capitalize;
+  color: rgba(255, 255, 255, .9);
+}
+
+#slide-out .card span {
+  font-weight: bold;
 }

@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
-<?php require APPROOT . '/views/inc/navbar.php' ?>
 <?php $user = $data['user']; $searchResults = $data['searchResults']; ?>
+<?php require APPROOT . '/views/inc/navbar.php' ?>
 <main class="section">
   <div class="main-container container">
     <div class="row">
@@ -28,7 +28,7 @@
       <div class="col xl6 l8 m12 s12 pl-0">
       
       <?php if($searchResults === ''): ?>
-      <h4 class="center-align">Search for people in twitter.</h4>
+      <h4 class="center-align">Search for people on twitter.</h4>
       <?php elseif (!$searchResults): ?>
       <h4 class="center-align">User not found.</h4>
       <?php else: ?>

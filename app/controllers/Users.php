@@ -10,6 +10,14 @@ class Users extends Controller {
     $this->followModel = $this->model('FollowSys');
   }
 
+  public function index() {
+    if(Auth::isLoggedIn()) {
+      redirect('tweets');
+    } else {
+      redirect('/');
+    }
+  }
+
   public function signup() {
     if(Auth::isLoggedIn()) {
       redirect('tweets');
@@ -173,18 +181,26 @@ class Users extends Controller {
     $this->view('users/login', $data);
   }
 
-  public function profile($username) {
+  public function profile($username = '') {
+    if(empty($username)) {
+      redirect('tweets/');
+    }
     $data = [
       'user' => $this->userModel->getUserByUserName($username),
       'users' => $this->userModel->getAllUser(4),
+      'getAllUsers' => $this->userModel->getAllUser(),
       'tweets' => $this->tweetModel->getAllTweetsByUserName($username),
       'total-tweets' => $this->tweetModel->getTotalTweetsByUserName($username),
       'total-following' => $this->followModel->getTotalFollowingByUserName($username),
-      'total-followers' => $this->followModel->getTotalFollowersByUserName($username),
+      'total-follower' => $this->followModel->getTotalFollowersByUserName($username),
       'follow' => $this->followModel,
       'likes' => $this->tweetModel, 
       'username' => $username
     ];
+
+    if(!$data['user']) {
+      redirect('tweets/');
+    }
   
     $this->view('users/profile', $data);
   }
@@ -203,6 +219,8 @@ class Users extends Controller {
         'currentPassword' => trim($_POST['currentPassword']),
         'password' => trim($_POST['password']),
         'confirmPassword' => trim($_POST['confirmPassword']),
+        'total-following' => $this->followModel->getTotalFollowing(),
+        'total-follower' => $this->followModel->getTotalFollower(),
         'firstName_err' => '',
         'lastName_err' => '', 
         'email_err' => '',
@@ -246,6 +264,29 @@ class Users extends Controller {
       }
         
       $this->view('users/editprofile', $data);
+    } else {
+      $user = $this->userModel->getUserById();
+      $data = [
+        'firstName' => $user->firstname,
+        'lastName' => $user->lastname,
+        'email' => $user->email,
+        'username' => $user->username,
+        'bio' => $user->bio,
+        'dob' => $user->dob,
+        'total-following' => $this->followModel->getTotalFollowing(),
+        'total-follower' => $this->followModel->getTotalFollower(),
+        'firstName_err' => '',
+        'lastName_err' => '', 
+        'email_err' => '',
+        'username_err' => '',
+        'bio_err' => '',
+        'dob_err' => '', 
+        'currentPassword_err' => '',
+        'password_err' => '',
+        'confirmPassword_err' => '',
+        'user' => $this->userModel->getUserById()
+      ];
+      $this->view('users/editprofile', $data);
     }
       
     if(isset($_POST['update'])) {
@@ -258,6 +299,8 @@ class Users extends Controller {
         'username' => trim($_POST['username']),
         'bio' => trim($_POST['bio']),
         'dob' => trim($_POST['dob']),
+        'total-following' => $this->followModel->getTotalFollowing(),
+        'total-follower' => $this->followModel->getTotalFollower(),
         'firstName_err' => '',
         'lastName_err' => '', 
         'email_err' => '',
@@ -362,6 +405,8 @@ class Users extends Controller {
         'username' => $user->username,
         'bio' => $user->bio,
         'dob' => $user->dob,
+        'total-following' => $this->followModel->getTotalFollowing(),
+        'total-follower' => $this->followModel->getTotalFollower(),
         'firstName_err' => '',
         'lastName_err' => '', 
         'email_err' => '',
@@ -383,33 +428,48 @@ class Users extends Controller {
   }
 
   public function following($username) {
+    if(empty($username)) {
+      redirect('tweets/');
+    }
+
     $data = [
       'user' => $this->userModel->getUserByUserName($username),
       'users' => $this->userModel->getAllUser(4),
       'tweets' => $this->tweetModel->getAllTweetsByUserName($username),
       'total-tweets' => $this->tweetModel->getTotalTweetsByUserName($username),
       'total-following' => $this->followModel->getTotalFollowingByUserName($username),
-      'total-followers' => $this->followModel->getTotalFollowersByUserName($username),
+      'total-follower' => $this->followModel->getTotalFollowersByUserName($username),
       'following' => $this->followModel->getFollowingByUserName($username),
       'follow' => $this->followModel, 
       'username' => $username
     ];
 
+    if(!$data['user']) {
+      redirect('tweets/');
+    }
+
     $this->view('users/following', $data);
   }
 
   public function followers($username) {
+    if(empty($username)) {
+      redirect('tweets/');
+    }
     $data = [
       'user' => $this->userModel->getUserByUserName($username),
       'users' => $this->userModel->getAllUser(4),
       'tweets' => $this->tweetModel->getAllTweetsByUserName($username),
       'total-tweets' => $this->tweetModel->getTotalTweetsByUserName($username),
       'total-following' => $this->followModel->getTotalFollowingByUserName($username),
-      'total-followers' => $this->followModel->getTotalFollowersByUserName($username),
+      'total-follower' => $this->followModel->getTotalFollowersByUserName($username),
       'followers' => $this->followModel->getFollowersByUserName($username),
       'follow' => $this->followModel, 
       'username' => $username
     ];
+
+    if(!$data['user']) {
+      redirect('tweets/');
+    }
 
     $this->view('users/followers', $data);
   }
@@ -441,8 +501,6 @@ class Users extends Controller {
   
     $this->view('users/search', $data);
   }
-
-
 
   public function logout() {
     Auth::logOut();

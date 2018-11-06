@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
-<?php $active = 'followers'; require APPROOT . '/views/inc/navbar.php' ?>
-<?php $user = $data['user']; $users = $data['users']; $tweets = $data['tweets']; ?>
+<?php $active = 'followers'; $user = $data['user']; require APPROOT . '/views/inc/navbar.php' ?>
+<?php $users = $data['users']; $tweets = $data['tweets']; ?>
 <div class="banner">
   <div id="bigProfileImage">
     <a href="#"><i class="fa fa-user fa-3x white-text"></i></a>
@@ -22,7 +22,7 @@
           <div class="card-action pr-0 hide-on-large-only">
             <a href="<?php echo url_for('users/profile/') . $user->username ?>">Tweets<span class="color-twitter center-align"><?php echo $data['total-tweets']; ?></span></a>
             <a href="<?php echo url_for('users/following/') . $user->username ?>">Following<span class="color-twitter center-align"><?php echo $data['total-following']; ?></span></a>
-            <a href="<?php echo url_for('users/followers/') . $user->username ?>">Followers<span class="color-twitter center-align"><?php echo $data['total-followers']; ?></span></a>
+            <a href="<?php echo url_for('users/followers/') . $user->username ?>">Followers<span class="color-twitter center-align"><?php echo $data['total-follower']; ?></span></a>
           </div>
           
         </div>
@@ -99,5 +99,11 @@
 <input type="hidden" id="username" name="username" value="<?php echo $data['username']; ?>">
 <script src="<?php echo url_for('js/jquery.js'); ?>"></script>
 <script src="<?php echo url_for('js/materialize.min.js'); ?>"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems);
+});
+</script>
 <script src="<?php echo url_for('js/follow.js'); ?>"></script>
 <?php require APPROOT . '/views/inc/footer.php' ?>

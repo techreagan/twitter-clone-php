@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
-<?php $active = 'user_tweets'; require APPROOT . '/views/inc/navbar.php' ?>
 <?php $user = $data['user'];?>
+<?php $active = 'user_tweets'; require APPROOT . '/views/inc/navbar.php' ?>
 <main class="section">
   <div class="main-container container">
     <div class="row">
@@ -118,9 +118,13 @@ M.toast({html: '<?php echo get_and_clear_message() ?>'})
 </script>
 <?php endif; ?>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelector('.datepicker');
-    var instances = M.Datepicker.init(elems);
-  });
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelector('.datepicker');
+  var instances = M.Datepicker.init(elems);
+
+  var sidenav = document.querySelectorAll('.sidenav');
+  var sideNavInstances = M.Sidenav.init(sidenav);
+});
+
 </script>
 <?php require APPROOT . '/views/inc/footer.php' ?>
