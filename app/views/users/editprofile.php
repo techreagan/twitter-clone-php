@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
 <?php $user = $data['user'];?>
+<?php //var_dump($user) ?>
 <?php $active = 'user_tweets'; require APPROOT . '/views/inc/navbar.php' ?>
 <main class="section">
   <div class="main-container container">

@@ -31,12 +31,11 @@
       <div class="col xl6 l8 m12 s12 pl-0">
   
         <div id="following">
+          <?php if(empty($data['following'])): ?>
+          <p class="center-align">You have not followed anybody yet.</p>
+          <?php else: ?>
           <?php foreach($data['following'] as $following_users): ?>
           <?php foreach($data['follow']->getFollow($following_users->following_id) as $user): ?>
-          <!-- <?php //echo $user->id; ?>
-          <pre>
-            <?php //echo  $following_users->following_id;  var_dump($user); ?>
-          </pre> -->
           <div class="col m6 s12 pl-0">
             <div class="card card-profile no-shadow">
               <div class="bg-twitter">
@@ -58,7 +57,7 @@
               </div>
             </div>
           </div>
-          <?php endforeach; endforeach; ?>
+          <?php endforeach; endforeach; endif; ?>
         </div>
 
       </div>
@@ -67,8 +66,10 @@
           <p class="bold">Who to follow . <a href="#">View all</a></p>
 
           <ul class="collection">
+            <?php if(empty($users)) : ?>
+            <p>Non for now.</p>
+            <?php else: ?>
             <?php foreach($users as $user): ?>
-            
             <li class="collection-item avatar">
               <a href="<?php echo url_for('users/profile/') . $user->username; ?>"><i class="fa fa-user fa-4x circle"></i><a>
               <p class="title truncate"><a href="<?php echo url_for('users/profile/') . $user->username; ?>"><span class="bold"><?php echo ucwords(h($user->firstname)) . ' ' . ucwords(h($user->lastname)); ?></span><span class="color-grey"> @<?php echo h($user->username); ?></span></a> <br>
@@ -79,9 +80,7 @@
               </p>
               <a href="#!" class="secondary-content grey-text"><i class="fa fa-times"></i></a>
             </li>
-      
-            <?php endforeach; ?>
-            
+            <?php endforeach; endif; ?>
           </ul>
         </div>
       
@@ -101,11 +100,5 @@
 <input type="hidden" id="username" name="username" value="<?php echo $data['username']; ?>">
 <script src="<?php echo url_for('js/jquery.js'); ?>"></script>
 <script src="<?php echo url_for('js/materialize.min.js'); ?>"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems);
-});
-</script>
 <script src="<?php echo url_for('js/follow.js'); ?>"></script>
 <?php require APPROOT . '/views/inc/footer.php' ?>

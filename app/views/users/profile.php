@@ -114,14 +114,5 @@
 <input type="hidden" id="username" name="username" value="<?php echo $data['username']; ?>">
 <script src="<?php echo url_for('js/jquery.js'); ?>"></script>
 <script src="<?php echo url_for('js/materialize.min.js'); ?>"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems);
-
-  var modal = document.querySelector('.modal');
-  var modalInst = M.Modal.init(modal);
-});
-</script>
 <script src="<?php echo url_for('js/profile.js'); ?>"></script>
 <?php require APPROOT . '/views/inc/footer.php' ?>

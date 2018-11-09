@@ -13,15 +13,15 @@
             </div>
           </div>
           <div class="card-content">
-            <p><a href="<?php echo url_for('users/profile/') . $user->username ?>">
+            <p><a href="<?php echo url_for('users/profile/') . h($user->username) ?>">
               <?php echo h(ucwords($user->firstname)) . ' ' . h(ucwords($user->lastname)); ?></a>
               <span><?php echo '@' . h($user->username); ?>
             </p>
           </div>
           <div class="card-action pr-0">
-            <a href="<?php echo url_for('users/profile/') . $user->username ?>">Tweets<span class="color-twitter center-align"><?php echo $data['total-tweets']; ?></span></a>
-            <a href="<?php echo url_for('users/following/') . $user->username ?>">Following<span class="color-twitter center-align"><?php echo $data['total-following']; ?></span></a>
-            <a href="<?php echo url_for('users/followers/') . $user->username ?>">Followers<span class="color-twitter center-align"><?php echo $data['total-follower']; ?></span></a>
+            <a href="<?php echo url_for('users/profile/') . $user->username ?>">Tweets<span class="color-twitter center-align"><?php echo h($data['total-tweets']); ?></span></a>
+            <a href="<?php echo url_for('users/following/') . $user->username ?>">Following<span class="color-twitter center-align"><?php echo h($data['total-following']); ?></span></a>
+            <a href="<?php echo url_for('users/followers/') . $user->username ?>">Followers<span class="color-twitter center-align"><?php echo h($data['total-follower']); ?></span></a>
           </div>
         </div>
       </div>
@@ -52,17 +52,20 @@
         <div class="white to-follow">
           <p class="bold">Who to follow . <a href="#viewAll" class="modal-trigger">View all</a></p>
           <ul class="collection">
+            <?php if(empty($users)) : ?>
+            <p>Non for now.</p>
+            <?php else: ?>
             <?php foreach($users as $user): ?>
             <li class="collection-item avatar">
-              <a href="<?php echo url_for('users/profile/') . $user->username ?>"><i class="fa fa-user fa-4x circle"></i><a>
-              <p class="title"><a href="<?php echo url_for('users/profile/') . $user->username ?>"><span class="bold"><?php echo ucwords(h($user->firstname)) . ' ' . ucwords(h($user->lastname)); ?></span><span class="color-grey"> @<?php echo h($user->username); ?></span></a> <br>
+              <a href="<?php echo url_for('users/profile/') . h($user->username) ?>"><i class="fa fa-user fa-4x circle"></i><a>
+              <p class="title"><a href="<?php  url_for('users/profile/') . h($user->username) ?>"><span class="bold"><?php echo ucwords(h($user->firstname)) . ' ' . ucwords(h($user->lastname)); ?></span><span class="color-grey"> @<?php echo h($user->username); ?></span></a> <br>
               <form method="POST" id="followForm">
                 <button type="submit" class="btn white color-twitter no-shadow follow-btn <?php echo $data['follow']->isFollow($_SESSION['user_id'], $user->id); ?>" data-follower-id="<?php echo $_SESSION['user_id'] ?>" data-following-id="<?php echo $user->id ?>" id="followBtn">Follow</button>
               </form>
               </p>
               <a href="#!" class="secondary-content grey-text"><i class="fa fa-times"></i></a>
             </li>
-            <?php endforeach; ?>
+            <?php endforeach; endif; ?>
           </ul>
           <!-- Modal Structure -->
           <div id="viewAll" class="modal">
@@ -90,7 +93,7 @@
             <small class="color-grey">&copy; 2018 Twitter</small>
           </div>
           <div class="card-action">
-            <a href="">Advertise with twitter</a>
+            <a href="#" class="capitalize color-twitter">Advertise with twitter</a>
           </div>
         </div>
 

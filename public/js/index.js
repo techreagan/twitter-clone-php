@@ -50,7 +50,7 @@ postForm.addEventListener('submit', (e) => {
 });
 
 function populateTweets(tweets) {
-  tweetDiv.appendChild(tweets);
+  tweetDiv.innerHTML = tweets;
 }
 
 function appendToDiv(div, new_html) {
@@ -77,8 +77,8 @@ function loadAllTweet() {
   }) 
     .then(res => res.text())
     .then(data => {
-      // populateTweets(data);
-      appendToDiv(tweetDiv, data);
+      populateTweets(data);
+      // appendToDiv(tweetDiv, data);
     })
     .catch(err => console.log(err));
 }
@@ -121,8 +121,6 @@ collection.forEach((collection) => {
     }
     
   })
-});
-followForm.addEventListener('submit', (e) => {
 });
 
 tweetDiv.addEventListener('click', (e) => {

@@ -4,6 +4,7 @@ class FollowSystem extends Controller {
   private $followSystem;
 
   public function __construct() {
+    Auth::requireLogIn();
     $this->followSystem = $this->model('FollowSys');
   }
 

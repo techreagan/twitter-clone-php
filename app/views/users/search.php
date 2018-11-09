@@ -55,11 +55,4 @@
 <script src="<?php echo url_for('js/jquery.js'); ?>"></script>
 <script src="<?php echo url_for('js/materialize.min.js'); ?>"></script>
 <script src="<?php echo url_for('js/search.js'); ?>"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems);
-});
-
-</script>
 <?php require APPROOT . '/views/inc/footer.php' ?>

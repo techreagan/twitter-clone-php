@@ -2,7 +2,9 @@
 
 class Pages extends Controller {
   public function __construct() {
-
+    if(Auth::isLoggedIn()) {
+      redirect('tweets');
+    }
   }
 
   public function index() {

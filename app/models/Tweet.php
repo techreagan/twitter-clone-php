@@ -28,9 +28,17 @@ class Tweet {
   }
 
   public function getAllTweetsByUserSession() {
-    $this->db->query('SELECT * FROM tweets 
-                      JOIN users as user on user.id = tweets.user_id  
-                      WHERE user.id = :user_id ORDER BY tweets.id DESC');
+    $this->db->query('SELECT 
+                            t.user_id,
+                            t.body,
+                            t.created_at,
+                            t.id,
+                            user.firstname,
+                            user.lastname,
+                            user.username 
+                      FROM tweets as t
+                      JOIN users as user on user.id = t.user_id  
+                      WHERE user.id = :user_id ORDER BY t.id DESC');
     $this->db->bind('user_id', $_SESSION['user_id']);
     $tweets = $this->db->resultSet();
 

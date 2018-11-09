@@ -31,6 +31,9 @@
       <div class="col xl6 l8 m12 s12 pl-0">
   
         <div id="following">
+          <?php if(!$data['followers']): ?>
+          <p class="center-align">No followers yet.</p>
+          <?php else: ?>
           <?php foreach($data['followers'] as $follower_users): ?>
           <?php foreach($data['follow']->getFollow($follower_users->follower_id) as $user): ?>
           <div class="col m6 s12 pl-0">
@@ -56,7 +59,7 @@
               </div>
             </div>
           </div>
-          <?php endforeach; endforeach; ?>
+          <?php endforeach; endforeach; endif; ?>
         </div>
 
       </div>
@@ -99,11 +102,5 @@
 <input type="hidden" id="username" name="username" value="<?php echo $data['username']; ?>">
 <script src="<?php echo url_for('js/jquery.js'); ?>"></script>
 <script src="<?php echo url_for('js/materialize.min.js'); ?>"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems);
-});
-</script>
 <script src="<?php echo url_for('js/follow.js'); ?>"></script>
 <?php require APPROOT . '/views/inc/footer.php' ?>

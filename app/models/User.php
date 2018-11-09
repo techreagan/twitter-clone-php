@@ -16,7 +16,7 @@ class User {
     $this->db->bind('password', $data['password']);
 
     if($this->db->execute()) {
-      return true;
+      return $this->getUserByUserName($data['username']);
     } else {
       return false;
     }

@@ -38,6 +38,14 @@ main {
   font-weight: bold!important;
 }
 
+.rounded-border {
+  border-radius: 110px;
+}
+
+.capitalize {
+  text-transform: capitalize!important;
+}
+
 main#index {
   height: 100%;
 }
@@ -115,6 +123,10 @@ main#index a.signup:hover {
   padding-right: 0!important;
 }
 
+.pb-0 {
+  padding-bottom: 0!important;
+}
+
 .error {
   color: red;
 }
@@ -129,6 +141,10 @@ main#index a.signup:hover {
 
 .progress .indeterminate {
   background-color: #2AA3EF;
+}
+
+.auth .card-action {
+  background: #F5F8FA;
 }
 
 .invalid-feedback {
@@ -246,6 +262,9 @@ main#index a.signup:hover {
   border-radius: 100px;
   text-transform: capitalize;
   font-weight: bold;
+  height: 35px;
+  color: white!important;
+  line-height: 35px!important;
 }
 
 .navbar #tweetBtn:hover, .navbar #searchBtn {

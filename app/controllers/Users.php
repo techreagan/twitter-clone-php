@@ -206,7 +206,7 @@ class Users extends Controller {
   }
 
   public function editprofile() {
-    if(isset($_POST['changePassword'])) {
+    if(isset($_POST['changePassword'])) { 
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
       $user = $this->userModel->getUserById();
       $data = [
@@ -264,30 +264,9 @@ class Users extends Controller {
       }
         
       $this->view('users/editprofile', $data);
-    } else {
-      $user = $this->userModel->getUserById();
-      $data = [
-        'firstName' => $user->firstname,
-        'lastName' => $user->lastname,
-        'email' => $user->email,
-        'username' => $user->username,
-        'bio' => $user->bio,
-        'dob' => $user->dob,
-        'total-following' => $this->followModel->getTotalFollowing(),
-        'total-follower' => $this->followModel->getTotalFollower(),
-        'firstName_err' => '',
-        'lastName_err' => '', 
-        'email_err' => '',
-        'username_err' => '',
-        'bio_err' => '',
-        'dob_err' => '', 
-        'currentPassword_err' => '',
-        'password_err' => '',
-        'confirmPassword_err' => '',
-        'user' => $this->userModel->getUserById()
-      ];
-      $this->view('users/editprofile', $data);
-    }
+    } 
+      
+  
       
     if(isset($_POST['update'])) {
       $user = $this->userModel->getUserById();
@@ -307,6 +286,9 @@ class Users extends Controller {
         'username_err' => '',
         'bio_err' => '',
         'dob_err' => '', 
+        'currentPassword_err' => '',
+        'password_err' => '',
+        'confirmPassword_err' => ''
       ];
       if(Validation::isBlank($data['firstName'])) {
         $data['firstName_err'] = 'Please enter first name';
@@ -385,6 +367,8 @@ class Users extends Controller {
           $updateInfo['dob'] = $data['dob'];
         }
 
+        // var_dump($updatedInfo);
+
         if(!empty($updateInfo)) {
           $updatedInfo = $this->userModel->updateInfo($updateInfo);
           if($updatedInfo) {
@@ -396,35 +380,31 @@ class Users extends Controller {
       }
       $data['user'] = $this->userModel->getUserById();
       $this->view('users/editprofile', $data);
-    } else {
-      $user = $this->userModel->getUserById();
-      $data = [
-        'firstName' => $user->firstname,
-        'lastName' => $user->lastname,
-        'email' => $user->email,
-        'username' => $user->username,
-        'bio' => $user->bio,
-        'dob' => $user->dob,
-        'total-following' => $this->followModel->getTotalFollowing(),
-        'total-follower' => $this->followModel->getTotalFollower(),
-        'firstName_err' => '',
-        'lastName_err' => '', 
-        'email_err' => '',
-        'username_err' => '',
-        'bio_err' => '',
-        'dob_err' => '', 
-        'currentPassword_err' => '',
-        'password_err' => '',
-        'confirmPassword_err' => '',
-        'user' => $this->userModel->getUserById()
-      ];
-      $this->view('users/editprofile', $data);
-    }
+    } 
 
-      
-   
+    $user = $this->userModel->getUserById();
+    $data = [
+      'user' => $this->userModel->getUserById(),
+      'firstName' => $user->firstname,
+      'lastName' => $user->lastname,
+      'email' => $user->email,
+      'username' => $user->username,
+      'bio' => $user->bio,
+      'dob' => $user->dob,
+      'total-following' => $this->followModel->getTotalFollowing(),
+      'total-follower' => $this->followModel->getTotalFollower(),
+      'firstName_err' => '',
+      'lastName_err' => '', 
+      'email_err' => '',
+      'username_err' => '',
+      'bio_err' => '',
+      'dob_err' => '', 
+      'currentPassword_err' => '',
+      'password_err' => '',
+      'confirmPassword_err' => ''
+    ];
     
-    // $this->view('users/editprofile', $data);
+    $this->view('users/editprofile', $data);
   }
 
   public function following($username) {

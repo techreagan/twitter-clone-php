@@ -1,7 +1,8 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
+<?php $hideMenu = 'true'; ?>
 <?php require APPROOT . '/views/inc/navbar.php' ?>
 <main class="section">
-  <div class="container">
+  <div class="container auth">
     <div class="row">
       <div class="col s12 m7 p-0">
           <div class="card">
@@ -56,11 +57,11 @@
                     <label for="confirmPassword">Confirm Password</label>
                   </div>
                 </div>
-                <input type="submit" class="btn bg-twitter" value="Submit">
+                <input type="submit" class="btn bg-twitter rounded-border" value="Submit">
               </form>
             </div>
             <div class="card-action">
-              <p>Already using twitter? <a href="<?php echo url_for('users/login'); ?>">Login</a></p>
+              <p>Already using twitter? <a href="<?php echo url_for('users/login'); ?>" class="color-twitter">Login</a></p>
             </div>
           </div>
       </div>

@@ -158,6 +158,12 @@ tweetDiv.addEventListener('click', (e) => {
     .catch(err => err);
     e.preventDefault();
   }
-  
-  
-})
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems);
+
+  var modal = document.querySelector('.modal');
+  var modalInst = M.Modal.init(modal);
+});

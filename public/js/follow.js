@@ -9,8 +9,7 @@ followBtn.forEach((btn) => {
     btn.innerHTML = 'Following';
   }
 });
-// followForm = Array.from(followForm);
-// console.log(followForm);
+
 followForms.forEach((followForm) => {
   followForm.addEventListener('click', (e) => {
     if(e.target.classList.contains('follow-btn')) {
@@ -40,4 +39,9 @@ followForms.forEach((followForm) => {
     }
     
   });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems);
 });

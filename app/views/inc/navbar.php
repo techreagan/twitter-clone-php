@@ -2,7 +2,7 @@
   <div class="container<?php echo Auth::isLoggedIn() ? " main-container" : '' ?>">
     <div class="nav-wrapper">
       <a href="<?php echo url_for('tweets') ?>" class="brand-logo color-black center"><i class="fab fa-twitter color-twitter icon"></i></a>
-      <a href="#" data-target="slide-out" class="sidenav-trigger color-twitter"><i class="fa fa-list-alt fa-4x"></i></a>
+      <a href="#" data-target="slide-out" class="sidenav-trigger color-twitter<?php echo isset($hideMenu) ? ' hide': ''?>"><i class="fa fa-list-alt fa-4x"></i></a>
       <ul class="left hide-on-med-and-down">
         <li><a href="<?php echo url_for('tweets') ?>" class="color-black center<?php echo $active === 'tweets' ? ' active': ''; ?>"><i class="fa fa-home icon<?php echo $active === 'tweets' ? ' color-twitter': ''; ?>"></i> Home</a></li>
       </ul>
@@ -19,7 +19,7 @@
         </li>
          <!-- <li class="drop"><a class="dropdown-trigger" data-target="#hello" href="#"><i class="fa fa-user"></i></a></li> -->
         <a href="<?php echo url_for('users/logout') ?>" class="color-twitter right">Logout</a>
-        <li><button type="button" class="btn no-shadow" id="tweetBtn">Tweet</button></li>
+        <li><a href="<?php echo url_for('tweets') ?>" class="btn no-shadow" id="tweetBtn">Tweet</a></li>
 
       </ul>
       </form>
@@ -37,8 +37,8 @@
       <div class="background">
       </div>
       <a href="<?php echo url_for('users/profile/') . $user->username ?>"><i class="fa fa-user fa-3x white-text"></i></a>
-      <a href="#name"><span class="white-text name"> <?php echo h(ucwords($user->firstname)) . ' ' . h(ucwords($user->lastname)); ?></span></a>
-      <a href="#email"><span class="white-text email">@<?php echo $user->username; ?></span></a>
+      <a href="<?php echo url_for('users/profile/') . $user->username ?>"><span class="white-text name"> <?php echo h(ucwords($user->firstname)) . ' ' . h(ucwords($user->lastname)); ?></span></a>
+      <a href="<?php echo url_for('users/profile/') . $user->username ?>"><span class="white-text email">@<?php echo $user->username; ?></span></a>
       <div class="card pt-0 no-shadow">
         <div class="card-action pt-0 pl-0 pr-0">
           <a href="<?php echo url_for('users/following/') . $user->username ?>"><span><?php echo $data['total-following']; ?></span> Following</a>
