@@ -17,14 +17,14 @@
                     <div class="row mb-0">
                       <div class="input-field col s12">
                         <input value="<?php echo $data['username']; ?>" id="username" name="username" type="text"<?php echo $data['username_err'] != '' ? ' class="is-invalid"' : ''; ?>>
-                        <span class="helper-text invalid-feedback"><?php echo $data['username_err']; ?></span>
+                        <span class="helper-text invalid-feedback"><?php echo !empty($data['username_err']) ? $data['username_err'] : 'Please enter email or username'; ?></span>
                         <label for="username">Email or Username</label>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="password" name="password" type="password"<?php echo $data['password_err'] != '' ? ' class="is-invalid"' : ''; ?>>
-                        <span class="helper-text invalid-feedback"><?php echo $data['password_err']; ?></span>
+                        <span class="helper-text invalid-feedback"><?php echo !empty($data['password_err']) ? $data['password_err'] : 'Please enter password'; ?></span>
                         <label for="password">Password</label>
                       </div>
                     </div>
@@ -47,10 +47,5 @@
 </main>
 <script src="<?php echo url_for('js/jquery.js'); ?>"></script>
 <script src="<?php echo url_for('js/materialize.min.js'); ?>"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelector('.datepicker');
-    var instances = M.Datepicker.init(elems);
-  });
-</script>
+<script src="<?php echo url_for('js/login.js'); ?>"></script>
 <?php require APPROOT . '/views/inc/footer.php' ?>

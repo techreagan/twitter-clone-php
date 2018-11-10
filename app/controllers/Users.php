@@ -236,6 +236,7 @@ class Users extends Controller {
         $data['currentPassword_err'] = 'Please enter current password';
       } else if(!password_verify($data['currentPassword'], $user->password)) {
         $data['currentPassword_err'] = 'Password doesn\'t match current password';
+        $_SESSION['message'] = 'Failed to change password';
       } else {
 
         if(Validation::isBlank($data['password'])) {

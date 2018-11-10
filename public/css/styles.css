@@ -189,6 +189,10 @@ main#index a.signup:hover {
   color: #2AA3EF!important;
 }
 
+.datepicker-table td.is-selected {
+  background: #2AA3EF;
+}
+
 .datepicker-footer button {
   color: #2AA3EF!important;
 }
