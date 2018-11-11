@@ -660,3 +660,30 @@ h5.modal-header {
 #slide-out .card span {
   font-weight: bold;
 }
+
+#about {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  font-weight: bold;
+}
+
+#about > p {
+  color: rgba(255, 255, 255, .5);
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+#about > p + p {
+  font-size: 4rem;
+  line-height: 1;
+  margin-top: 0;
+}
+
+@media (max-width: 500px) {
+  #about > p { 
+    font-size: 1rem;
+  }
+  #about > p + p { 
+    font-size: 3rem;
+  }
+}

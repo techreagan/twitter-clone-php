@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
-<?php $hideMenu = 'true'; ?>
+<?php $hideMenu = 'true'; $active = 'null'; ?>
 <?php require APPROOT . '/views/inc/navbar.php' ?>
 <main class="section">
   <div class="container auth">
