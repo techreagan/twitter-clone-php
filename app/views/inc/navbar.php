@@ -2,7 +2,7 @@
   <div class="container<?php echo Auth::isLoggedIn() ? " main-container" : '' ?>">
     <div class="nav-wrapper">
       <a href="<?php echo url_for('tweets') ?>" class="brand-logo color-black center"><i class="fab fa-twitter color-twitter icon"></i></a>
-      <a href="#" data-target="slide-out" class="sidenav-trigger color-twitter<?php echo isset($hideMenu) ? ' hide': ''?>"><i class="fa fa-list-alt fa-4x"></i></a>
+      <a href="#" id="menuIcon" data-target="slide-out" class="sidenav-trigger color-twitter<?php echo isset($hideMenu) ? ' hide': ''?>"><i class="fa fa-list-alt fa-4x"></i></a>
       <ul class="left hide-on-med-and-down">
         <li><a href="<?php echo url_for('tweets') ?>" class="color-black center<?php echo $active === 'tweets' ? ' active': ''; ?>"><i class="fa fa-home icon<?php echo $active === 'tweets' ? ' color-twitter': ''; ?>"></i> Home</a></li>
         <?php if(!Auth::isLoggedIn()): ?>

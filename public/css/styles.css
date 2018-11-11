@@ -235,6 +235,15 @@ main#index a.signup:hover {
   font-size: 1.5rem !important;
 }
 
+nav .container a#menuIcon {
+  padding-left: 0!important;
+  margin-left: 0!important;
+}
+
+#menuIcon i {
+  color: #2AA3EF!important;
+}
+
 .navbar #search {
   /* background: #F5F8FA; */
   /* border-radius: 21px; */
@@ -456,6 +465,10 @@ main#index a.signup:hover {
   border-radius: 20px;
 } 
 
+#tweets {
+  margin-bottom: 10px;
+}
+
 #tweets .horizontal {
   border-bottom: 1px solid #e0e0e0;
   border-bottom: 1px solid #e6ecf0;
@@ -493,13 +506,25 @@ main#index a.signup:hover {
 #tweets .card-action {
   border-top: none;
   padding-left: .9rem;
-  padding-bottom: .7rem;
+  padding-bottom: 0;
+  padding-top: 0;
+  /* padding-bottom: .7rem; */
 }
 
 #tweets .card-action span {
-  padding-left: 10px;
   font-weight: bold;
   font-size: .9rem;
+}  
+
+#tweets .card-action i {
+  padding-right: 1rem;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+}
+
+#tweets .card-action a {
+  /* padding: 1.2rem; */
+  padding-left: 0;
 }
 
 #tweets .liked {
@@ -509,8 +534,6 @@ main#index a.signup:hover {
   animation-iteration-count: 1;
   animation-timing-function: ease;
 }
-
-
 
 @keyframes grow {
   0% {
@@ -619,7 +642,7 @@ main#index a.signup:hover {
   }
   .banner a {
     top: 50px;
-    margin-left: 3rem;
+    margin-left: 1.5rem;
     font-size: 1.8rem;
   }
 }

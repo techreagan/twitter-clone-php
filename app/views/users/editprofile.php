@@ -80,7 +80,7 @@
               <div class="row">
                 <div class="input-field col s12">
                   <input id="currentPassword" name="currentPassword" type="password"<?php echo $data['currentPassword_err'] != '' ? ' class="is-invalid"' : ''; ?>>
-                  <span class="helper-text invalid-feedback"><?php echo $data['currentPassword_err']; ?></span>
+                  <span class="helper-text invalid-feedback"><?php echo !empty($data['currentPassword_err']) ? h($data['currentPassword_err']) : ' This is invalid'; ?></span>
                   <!-- <span class="helper-text">Password must be at least six(6) characters long and must contain one uppercase and number.</span> -->
                   <label for="currentPassword">Current Password</label>
                 </div>

@@ -182,6 +182,7 @@ class Users extends Controller {
   }
 
   public function profile($username = '') {
+    Auth::requireLogIn();
     if(empty($username)) {
       redirect('tweets/');
     }
@@ -206,6 +207,7 @@ class Users extends Controller {
   }
 
   public function editprofile() {
+    Auth::requireLogIn();
     if(isset($_POST['changePassword'])) { 
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
       $user = $this->userModel->getUserById();
@@ -409,6 +411,7 @@ class Users extends Controller {
   }
 
   public function following($username) {
+    Auth::requireLogIn();
     if(empty($username)) {
       redirect('tweets/');
     }
@@ -433,6 +436,7 @@ class Users extends Controller {
   }
 
   public function followers($username) {
+    Auth::requireLogIn();
     if(empty($username)) {
       redirect('tweets/');
     }
@@ -456,7 +460,7 @@ class Users extends Controller {
   }
 
   public function search() {
-   
+    Auth::requireLogIn();
     if(isset($_GET['user']) && !empty($_GET['user'])) {
       $user = trim($_GET['user']);
       $data = [

@@ -26,7 +26,7 @@ class Tweets extends Controller {
   }
 
   public function postTweet() {
-    sleep(2);
+    
     if(is_ajax_request()) {
       $post = $this->tweetModel->postTweet($_POST['tweet']);
       if($post) {

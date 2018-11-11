@@ -26,7 +26,12 @@
         </div>
       </div>
       <div class="col xl6 l8 m12 s12 pl-0">
-      
+      <form action="<?php echo url_for('users/search/') ?>" method="get" class="hide-on-large-only">
+        <div class="input-field">
+          <input id="search" name="user" type="text" placeholder="Search Twitter">
+        </div>
+        <button type="submit" class="btn no-shadow bg-twitter" id="searchBtn"><i class="fa fa-search"></i></button>
+      </form>
       <?php if($searchResults === ''): ?>
       <h4 class="center-align">Search for people on twitter.</h4>
       <?php elseif (!$searchResults): ?>

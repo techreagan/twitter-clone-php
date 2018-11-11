@@ -149,7 +149,6 @@ tweetDiv.addEventListener('click', (e) => {
       
     })
     .catch(err => err);
-    e.preventDefault();
   }
 
   if(e.target.parentElement.classList.contains('deleteBtn')) {
