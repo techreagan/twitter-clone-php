@@ -5,7 +5,9 @@
       <a href="#" data-target="slide-out" class="sidenav-trigger color-twitter<?php echo isset($hideMenu) ? ' hide': ''?>"><i class="fa fa-list-alt fa-4x"></i></a>
       <ul class="left hide-on-med-and-down">
         <li><a href="<?php echo url_for('tweets') ?>" class="color-black center<?php echo $active === 'tweets' ? ' active': ''; ?>"><i class="fa fa-home icon<?php echo $active === 'tweets' ? ' color-twitter': ''; ?>"></i> Home</a></li>
+        <?php if(!Auth::isLoggedIn()): ?>
         <li><a href="<?php echo url_for('pages/about') ?>" class="color-black center<?php echo $active === 'about' ? ' active': ''; ?>"></i> About</a></li>
+      <?php endif; ?>
       </ul>
       <?php if(Auth::isLoggedIn()): ?>
       <form action="<?php echo url_for('users/search/') ?>" method="get">

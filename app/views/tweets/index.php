@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/inc/header.php' ?>
-<?php $user = $data['user']; $users = $data['users']; $getAllUsers = $data['getAllUsers']; ?>
+<?php $active='tweets'; $user = $data['user']; $users = $data['users']; $getAllUsers = $data['getAllUsers']; ?>
 <?php require APPROOT . '/views/inc/navbar.php' ?>
 <main class="section">
   <div class="main-container container">
