@@ -118,10 +118,29 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
 });
 
+const date = new Date();
 
+const monthsShort	=
+[
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec'
+];
+
+const todaysDate = date.getDate() + ' ' + monthsShort[date.getMonth()] + ', ' + date.getFullYear(); 
+const currentDate = new Date(todaysDate);
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelector('.datepicker');
-  var instances = M.Datepicker.init(elems);
+  var instances = M.Datepicker.init(elems, {maxDate: currentDate});
   dob.addEventListener('focus', () => {
     instances.open();
   })

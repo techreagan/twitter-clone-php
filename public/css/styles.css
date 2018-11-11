@@ -191,6 +191,7 @@ main#index a.signup:hover {
 
 .datepicker-table td.is-selected {
   background: #2AA3EF;
+  color: #fff!important; 
 }
 
 .datepicker-footer button {
